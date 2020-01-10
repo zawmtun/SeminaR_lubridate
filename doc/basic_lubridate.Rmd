@@ -1,0 +1,15 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+```{r}
+fb <- read_csv(here("data", "dengue_fb.csv"))
+
+```
+
