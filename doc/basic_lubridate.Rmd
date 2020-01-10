@@ -9,7 +9,111 @@ library(here)
 ```
 
 ```{r}
-fb <- read_csv(here("data", "dengue_fb.csv"))
-
+fb <- read_csv(here("data", "fb_new.csv"))
+tw <- read_csv(here("data", "tw_new.csv"))
 ```
+
+Who are the top 10 influencers who posted the highest number of tweets?
+
+```{r}
+top_10 <- tweet %>% 
+  count(influencer, sort = TRUE) %>% 
+  slice(1:10) %>% 
+  pull(influencer)
+```
+
+Plot their total number of tweets against average AVE value using a scatter plot.
+
+```{r}
+tweet %>% 
+  filter(influencer %in% top_10) %>% 
+  group_by(influencer) %>% 
+  summarise(ave = mean(ave, na.rm = TRUE),
+            num_tweets = n()) %>% 
+  ggplot(aes(x = num_tweets, y = ave)) +
+  geom_point() +
+  geom_text(aes(label = influencer), hjust = 1, vjust = -0.5, size = 3, check_overlap = TRUE) +
+  labs(title = "AVE and number of tweets of influencers", x = "Number of tweets", y = "Mean value of AVE") +
+  scale_x_continuous(limits = c(0, 1500), breaks = seq(0, 1500, 300)) +
+  theme_classic()
+```
+
+Nature of sentiments of the top 10 influencer's tweets classified by algorithm.
+
+```{r}
+tweet %>% 
+  filter(influencer %in% top_10) %>% 
+  mutate(influencer = factor(influencer),
+         sentiment = factor(sentiment, levels = c("Positive", "Negative", "Neutral", "Not Rated"))) %>% 
+  ggplot(aes(x = fct_infreq(influencer), fill = fct_rev(sentiment))) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis(discrete = TRUE, option = "D", alpha = 0.8) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = "Influencer", y = "", fill = "Sentiment of tweets") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.3),
+        axis.ticks = element_blank())
+```
+
+
+```{r}
+tweet %>% 
+  group_by(language) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n)) %>% 
+  slice(1:10) %>% 
+  mutate(pos = factor(language)) %>% 
+  ggplot(aes(x = fct_reorder(pos, n), y = n)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_y_continuous(limits  = c(0, 80000)) +
+  labs(x = "Language", y = "Number of tweets")
+```
+  
+```{r}
+fb %>% 
+  group_by(language) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n)) %>% 
+  slice(1:10) %>% 
+  mutate(pos = factor(language)) %>% 
+  ggplot(aes(x = fct_reorder(pos, n), y = n)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_y_continuous(limits  = c(0, 80000)) +
+  labs(x = "Language of posts", y = "Number of facebook posts")
+```
+
+```{r}
+tweet1 <- tweet %>% 
+  mutate(datetime = make_datetime(year, month, day, time %/% 100, time %% 100))
+
+fb1 <- fb %>% 
+  mutate(datetime = parse_date_time(date, "ymdHMS"))
+```
+
+```{r}
+social_media <- bind_rows(
+  Twitter = tweet1 %>% select(datetime),
+  Facebook = fb1 %>% select(datetime),
+  .id = "source"
+)
+
+social_media %>% 
+  ggplot(aes(x = datetime, col = source)) +
+  geom_freqpoly(binwidth = 60*60*24)
+
+tw1date <- range(tw1$datetime)
+(tw1date[1] %--% tw1date[2]) %/% days(1)
+
+test <- social_media %>% 
+  mutate(dt = date(datetime)) %>% 
+  count(source, dt) %>% 
+  pivot_wider(names_from = source,
+              values_from = n)
+
+ggplot(test, aes(x = fb, y = tw)) +
+  geom_point()
+```
+
 

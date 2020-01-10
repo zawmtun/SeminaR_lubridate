@@ -1759,15 +1759,135 @@ library(here)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmIgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJkZW5ndWVfZmIuY3N2XCIpKVxuXG5gYGAifQ== -->
-<pre class="r"><code>fb &lt;- read_csv(here(&quot;data&quot;, &quot;dengue_fb.csv&quot;))
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmIgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJmYl9uZXcuY3N2XCIpKVxudHcgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJ0d19uZXcuY3N2XCIpKVxuYGBgIn0= -->
+<pre class="r"><code>fb &lt;- read_csv(here(&quot;data&quot;, &quot;fb_new.csv&quot;))
+tw &lt;- read_csv(here(&quot;data&quot;, &quot;tw_new.csv&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Who are the top 10 influencers who posted the highest number of tweets?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9wXzEwIDwtIHR3ZWV0ICU+JSBcbiAgY291bnQoaW5mbHVlbmNlciwgc29ydCA9IFRSVUUpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBwdWxsKGluZmx1ZW5jZXIpXG5gYGAifQ== -->
+<pre class="r"><code>top_10 &lt;- tweet %&gt;% 
+  count(influencer, sort = TRUE) %&gt;% 
+  slice(1:10) %&gt;% 
+  pull(influencer)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Plot their total number of tweets against average AVE value using a scatter plot.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQgJT4lIFxuICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIFxuICBncm91cF9ieShpbmZsdWVuY2VyKSAlPiUgXG4gIHN1bW1hcmlzZShhdmUgPSBtZWFuKGF2ZSwgbmEucm0gPSBUUlVFKSxcbiAgICAgICAgICAgIG51bV90d2VldHMgPSBuKCkpICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gbnVtX3R3ZWV0cywgeSA9IGF2ZSkpICtcbiAgZ2VvbV9wb2ludCgpICtcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IGluZmx1ZW5jZXIpLCBoanVzdCA9IDEsIHZqdXN0ID0gLTAuNSwgc2l6ZSA9IDMsIGNoZWNrX292ZXJsYXAgPSBUUlVFKSArXG4gIGxhYnModGl0bGUgPSBcIkFWRSBhbmQgbnVtYmVyIG9mIHR3ZWV0cyBvZiBpbmZsdWVuY2Vyc1wiLCB4ID0gXCJOdW1iZXIgb2YgdHdlZXRzXCIsIHkgPSBcIk1lYW4gdmFsdWUgb2YgQVZFXCIpICtcbiAgc2NhbGVfeF9jb250aW51b3VzKGxpbWl0cyA9IGMoMCwgMTUwMCksIGJyZWFrcyA9IHNlcSgwLCAxNTAwLCAzMDApKSArXG4gIHRoZW1lX2NsYXNzaWMoKVxuYGBgIn0= -->
+<pre class="r"><code>tweet %&gt;% 
+  filter(influencer %in% top_10) %&gt;% 
+  group_by(influencer) %&gt;% 
+  summarise(ave = mean(ave, na.rm = TRUE),
+            num_tweets = n()) %&gt;% 
+  ggplot(aes(x = num_tweets, y = ave)) +
+  geom_point() +
+  geom_text(aes(label = influencer), hjust = 1, vjust = -0.5, size = 3, check_overlap = TRUE) +
+  labs(title = &quot;AVE and number of tweets of influencers&quot;, x = &quot;Number of tweets&quot;, y = &quot;Mean value of AVE&quot;) +
+  scale_x_continuous(limits = c(0, 1500), breaks = seq(0, 1500, 300)) +
+  theme_classic()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Nature of sentiments of the top 10 influencer’s tweets classified by algorithm.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQgJT4lIFxuICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIFxuICBtdXRhdGUoaW5mbHVlbmNlciA9IGZhY3RvcihpbmZsdWVuY2VyKSxcbiAgICAgICAgIHNlbnRpbWVudCA9IGZhY3RvcihzZW50aW1lbnQsIGxldmVscyA9IGMoXCJQb3NpdGl2ZVwiLCBcIk5lZ2F0aXZlXCIsIFwiTmV1dHJhbFwiLCBcIk5vdCBSYXRlZFwiKSkpICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gZmN0X2luZnJlcShpbmZsdWVuY2VyKSwgZmlsbCA9IGZjdF9yZXYoc2VudGltZW50KSkpICtcbiAgZ2VvbV9iYXIocG9zaXRpb24gPSBcImZpbGxcIikgK1xuICBzY2FsZV9maWxsX3ZpcmlkaXMoZGlzY3JldGUgPSBUUlVFLCBvcHRpb24gPSBcIkRcIiwgYWxwaGEgPSAwLjgpICtcbiAgc2NhbGVfeV9jb250aW51b3VzKGxhYmVscyA9IHNjYWxlczo6cGVyY2VudF9mb3JtYXQoKSkgK1xuICBsYWJzKHggPSBcIkluZmx1ZW5jZXJcIiwgeSA9IFwiXCIsIGZpbGwgPSBcIlNlbnRpbWVudCBvZiB0d2VldHNcIikgK1xuICB0aGVtZV9jbGFzc2ljKCkgK1xuICB0aGVtZShheGlzLnRleHQueCA9IGVsZW1lbnRfdGV4dChhbmdsZSA9IDkwLCBoanVzdCA9IDEsIHZqdXN0ID0gMC4zKSxcbiAgICAgICAgYXhpcy50aWNrcyA9IGVsZW1lbnRfYmxhbmsoKSlcbmBgYCJ9 -->
+<pre class="r"><code>tweet %&gt;% 
+  filter(influencer %in% top_10) %&gt;% 
+  mutate(influencer = factor(influencer),
+         sentiment = factor(sentiment, levels = c(&quot;Positive&quot;, &quot;Negative&quot;, &quot;Neutral&quot;, &quot;Not Rated&quot;))) %&gt;% 
+  ggplot(aes(x = fct_infreq(influencer), fill = fct_rev(sentiment))) +
+  geom_bar(position = &quot;fill&quot;) +
+  scale_fill_viridis(discrete = TRUE, option = &quot;D&quot;, alpha = 0.8) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = &quot;Influencer&quot;, y = &quot;&quot;, fill = &quot;Sentiment of tweets&quot;) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.3),
+        axis.ticks = element_blank())</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQgJT4lIFxuICBncm91cF9ieShsYW5ndWFnZSkgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICBhcnJhbmdlKGRlc2MobikpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICtcbiAgZ2VvbV9iYXIoc3RhdCA9IFwiaWRlbnRpdHlcIikgK1xuICBjb29yZF9mbGlwKCkgK1xuICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArXG4gIGxhYnMoeCA9IFwiTGFuZ3VhZ2VcIiwgeSA9IFwiTnVtYmVyIG9mIHR3ZWV0c1wiKVxuYGBgIn0= -->
+<pre class="r"><code>tweet %&gt;% 
+  group_by(language) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  arrange(desc(n)) %&gt;% 
+  slice(1:10) %&gt;% 
+  mutate(pos = factor(language)) %&gt;% 
+  ggplot(aes(x = fct_reorder(pos, n), y = n)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  coord_flip() +
+  scale_y_continuous(limits  = c(0, 80000)) +
+  labs(x = &quot;Language&quot;, y = &quot;Number of tweets&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmIgJT4lIFxuICBncm91cF9ieShsYW5ndWFnZSkgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICBhcnJhbmdlKGRlc2MobikpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICtcbiAgZ2VvbV9iYXIoc3RhdCA9IFwiaWRlbnRpdHlcIikgK1xuICBjb29yZF9mbGlwKCkgK1xuICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArXG4gIGxhYnMoeCA9IFwiTGFuZ3VhZ2Ugb2YgcG9zdHNcIiwgeSA9IFwiTnVtYmVyIG9mIGZhY2Vib29rIHBvc3RzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>fb %&gt;% 
+  group_by(language) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  arrange(desc(n)) %&gt;% 
+  slice(1:10) %&gt;% 
+  mutate(pos = factor(language)) %&gt;% 
+  ggplot(aes(x = fct_reorder(pos, n), y = n)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  coord_flip() +
+  scale_y_continuous(limits  = c(0, 80000)) +
+  labs(x = &quot;Language of posts&quot;, y = &quot;Number of facebook posts&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQxIDwtIHR3ZWV0ICU+JSBcbiAgbXV0YXRlKGRhdGV0aW1lID0gbWFrZV9kYXRldGltZSh5ZWFyLCBtb250aCwgZGF5LCB0aW1lICUvJSAxMDAsIHRpbWUgJSUgMTAwKSlcblxuZmIxIDwtIGZiICU+JSBcbiAgbXV0YXRlKGRhdGV0aW1lID0gcGFyc2VfZGF0ZV90aW1lKGRhdGUsIFwieW1kSE1TXCIpKVxuYGBgIn0= -->
+<pre class="r"><code>tweet1 &lt;- tweet %&gt;% 
+  mutate(datetime = make_datetime(year, month, day, time %/% 100, time %% 100))
+
+fb1 &lt;- fb %&gt;% 
+  mutate(datetime = parse_date_time(date, &quot;ymdHMS&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29jaWFsX21lZGlhIDwtIGJpbmRfcm93cyhcbiAgVHdpdHRlciA9IHR3ZWV0MSAlPiUgc2VsZWN0KGRhdGV0aW1lKSxcbiAgRmFjZWJvb2sgPSBmYjEgJT4lIHNlbGVjdChkYXRldGltZSksXG4gIC5pZCA9IFwic291cmNlXCJcbilcblxuc29jaWFsX21lZGlhICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gZGF0ZXRpbWUsIGNvbCA9IHNvdXJjZSkpICtcbiAgZ2VvbV9mcmVxcG9seShiaW53aWR0aCA9IDYwKjYwKjI0KVxuXG50dzFkYXRlIDwtIHJhbmdlKHR3MSRkYXRldGltZSlcbih0dzFkYXRlWzFdICUtLSUgdHcxZGF0ZVsyXSkgJS8lIGRheXMoMSlcblxudGVzdCA8LSBzb2NpYWxfbWVkaWEgJT4lIFxuICBtdXRhdGUoZHQgPSBkYXRlKGRhdGV0aW1lKSkgJT4lIFxuICBjb3VudChzb3VyY2UsIGR0KSAlPiUgXG4gIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBzb3VyY2UsXG4gICAgICAgICAgICAgIHZhbHVlc19mcm9tID0gbilcblxuZ2dwbG90KHRlc3QsIGFlcyh4ID0gZmIsIHkgPSB0dykpICtcbiAgZ2VvbV9wb2ludCgpXG5gYGAifQ== -->
+<pre class="r"><code>social_media &lt;- bind_rows(
+  Twitter = tweet1 %&gt;% select(datetime),
+  Facebook = fb1 %&gt;% select(datetime),
+  .id = &quot;source&quot;
+)
+
+social_media %&gt;% 
+  ggplot(aes(x = datetime, col = source)) +
+  geom_freqpoly(binwidth = 60*60*24)
+
+tw1date &lt;- range(tw1$datetime)
+(tw1date[1] %--% tw1date[2]) %/% days(1)
+
+test &lt;- social_media %&gt;% 
+  mutate(dt = date(datetime)) %&gt;% 
+  count(source, dt) %&gt;% 
+  pivot_wider(names_from = source,
+              values_from = n)
+
+ggplot(test, aes(x = fb, y = tw)) +
+  geom_point()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShoZXJlKQ0KYGBgDQoNCmBgYHtyfQ0KZmIgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YSIsICJkZW5ndWVfZmIuY3N2IikpDQoNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShoZXJlKQ0KYGBgDQoNCmBgYHtyfQ0KZmIgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YSIsICJmYl9uZXcuY3N2IikpDQp0dyA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgInR3X25ldy5jc3YiKSkNCmBgYA0KDQpXaG8gYXJlIHRoZSB0b3AgMTAgaW5mbHVlbmNlcnMgd2hvIHBvc3RlZCB0aGUgaGlnaGVzdCBudW1iZXIgb2YgdHdlZXRzPw0KDQpgYGB7cn0NCnRvcF8xMCA8LSB0d2VldCAlPiUgDQogIGNvdW50KGluZmx1ZW5jZXIsIHNvcnQgPSBUUlVFKSAlPiUgDQogIHNsaWNlKDE6MTApICU+JSANCiAgcHVsbChpbmZsdWVuY2VyKQ0KYGBgDQoNClBsb3QgdGhlaXIgdG90YWwgbnVtYmVyIG9mIHR3ZWV0cyBhZ2FpbnN0IGF2ZXJhZ2UgQVZFIHZhbHVlIHVzaW5nIGEgc2NhdHRlciBwbG90Lg0KDQpgYGB7cn0NCnR3ZWV0ICU+JSANCiAgZmlsdGVyKGluZmx1ZW5jZXIgJWluJSB0b3BfMTApICU+JSANCiAgZ3JvdXBfYnkoaW5mbHVlbmNlcikgJT4lIA0KICBzdW1tYXJpc2UoYXZlID0gbWVhbihhdmUsIG5hLnJtID0gVFJVRSksDQogICAgICAgICAgICBudW1fdHdlZXRzID0gbigpKSAlPiUgDQogIGdncGxvdChhZXMoeCA9IG51bV90d2VldHMsIHkgPSBhdmUpKSArDQogIGdlb21fcG9pbnQoKSArDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBpbmZsdWVuY2VyKSwgaGp1c3QgPSAxLCB2anVzdCA9IC0wLjUsIHNpemUgPSAzLCBjaGVja19vdmVybGFwID0gVFJVRSkgKw0KICBsYWJzKHRpdGxlID0gIkFWRSBhbmQgbnVtYmVyIG9mIHR3ZWV0cyBvZiBpbmZsdWVuY2VycyIsIHggPSAiTnVtYmVyIG9mIHR3ZWV0cyIsIHkgPSAiTWVhbiB2YWx1ZSBvZiBBVkUiKSArDQogIHNjYWxlX3hfY29udGludW91cyhsaW1pdHMgPSBjKDAsIDE1MDApLCBicmVha3MgPSBzZXEoMCwgMTUwMCwgMzAwKSkgKw0KICB0aGVtZV9jbGFzc2ljKCkNCmBgYA0KDQpOYXR1cmUgb2Ygc2VudGltZW50cyBvZiB0aGUgdG9wIDEwIGluZmx1ZW5jZXIncyB0d2VldHMgY2xhc3NpZmllZCBieSBhbGdvcml0aG0uDQoNCmBgYHtyfQ0KdHdlZXQgJT4lIA0KICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIA0KICBtdXRhdGUoaW5mbHVlbmNlciA9IGZhY3RvcihpbmZsdWVuY2VyKSwNCiAgICAgICAgIHNlbnRpbWVudCA9IGZhY3RvcihzZW50aW1lbnQsIGxldmVscyA9IGMoIlBvc2l0aXZlIiwgIk5lZ2F0aXZlIiwgIk5ldXRyYWwiLCAiTm90IFJhdGVkIikpKSAlPiUgDQogIGdncGxvdChhZXMoeCA9IGZjdF9pbmZyZXEoaW5mbHVlbmNlciksIGZpbGwgPSBmY3RfcmV2KHNlbnRpbWVudCkpKSArDQogIGdlb21fYmFyKHBvc2l0aW9uID0gImZpbGwiKSArDQogIHNjYWxlX2ZpbGxfdmlyaWRpcyhkaXNjcmV0ZSA9IFRSVUUsIG9wdGlvbiA9ICJEIiwgYWxwaGEgPSAwLjgpICsNCiAgc2NhbGVfeV9jb250aW51b3VzKGxhYmVscyA9IHNjYWxlczo6cGVyY2VudF9mb3JtYXQoKSkgKw0KICBsYWJzKHggPSAiSW5mbHVlbmNlciIsIHkgPSAiIiwgZmlsbCA9ICJTZW50aW1lbnQgb2YgdHdlZXRzIikgKw0KICB0aGVtZV9jbGFzc2ljKCkgKw0KICB0aGVtZShheGlzLnRleHQueCA9IGVsZW1lbnRfdGV4dChhbmdsZSA9IDkwLCBoanVzdCA9IDEsIHZqdXN0ID0gMC4zKSwNCiAgICAgICAgYXhpcy50aWNrcyA9IGVsZW1lbnRfYmxhbmsoKSkNCmBgYA0KDQoNCmBgYHtyfQ0KdHdlZXQgJT4lIA0KICBncm91cF9ieShsYW5ndWFnZSkgJT4lIA0KICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIA0KICBhcnJhbmdlKGRlc2MobikpICU+JSANCiAgc2xpY2UoMToxMCkgJT4lIA0KICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIA0KICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICsNCiAgZ2VvbV9iYXIoc3RhdCA9ICJpZGVudGl0eSIpICsNCiAgY29vcmRfZmxpcCgpICsNCiAgc2NhbGVfeV9jb250aW51b3VzKGxpbWl0cyAgPSBjKDAsIDgwMDAwKSkgKw0KICBsYWJzKHggPSAiTGFuZ3VhZ2UiLCB5ID0gIk51bWJlciBvZiB0d2VldHMiKQ0KYGBgDQogIA0KYGBge3J9DQpmYiAlPiUgDQogIGdyb3VwX2J5KGxhbmd1YWdlKSAlPiUgDQogIHN1bW1hcmlzZShuID0gbigpKSAlPiUgDQogIGFycmFuZ2UoZGVzYyhuKSkgJT4lIA0KICBzbGljZSgxOjEwKSAlPiUgDQogIG11dGF0ZShwb3MgPSBmYWN0b3IobGFuZ3VhZ2UpKSAlPiUgDQogIGdncGxvdChhZXMoeCA9IGZjdF9yZW9yZGVyKHBvcywgbiksIHkgPSBuKSkgKw0KICBnZW9tX2JhcihzdGF0ID0gImlkZW50aXR5IikgKw0KICBjb29yZF9mbGlwKCkgKw0KICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArDQogIGxhYnMoeCA9ICJMYW5ndWFnZSBvZiBwb3N0cyIsIHkgPSAiTnVtYmVyIG9mIGZhY2Vib29rIHBvc3RzIikNCmBgYA0KDQpgYGB7cn0NCnR3ZWV0MSA8LSB0d2VldCAlPiUgDQogIG11dGF0ZShkYXRldGltZSA9IG1ha2VfZGF0ZXRpbWUoeWVhciwgbW9udGgsIGRheSwgdGltZSAlLyUgMTAwLCB0aW1lICUlIDEwMCkpDQoNCmZiMSA8LSBmYiAlPiUgDQogIG11dGF0ZShkYXRldGltZSA9IHBhcnNlX2RhdGVfdGltZShkYXRlLCAieW1kSE1TIikpDQpgYGANCg0KYGBge3J9DQpzb2NpYWxfbWVkaWEgPC0gYmluZF9yb3dzKA0KICBUd2l0dGVyID0gdHdlZXQxICU+JSBzZWxlY3QoZGF0ZXRpbWUpLA0KICBGYWNlYm9vayA9IGZiMSAlPiUgc2VsZWN0KGRhdGV0aW1lKSwNCiAgLmlkID0gInNvdXJjZSINCikNCg0Kc29jaWFsX21lZGlhICU+JSANCiAgZ2dwbG90KGFlcyh4ID0gZGF0ZXRpbWUsIGNvbCA9IHNvdXJjZSkpICsNCiAgZ2VvbV9mcmVxcG9seShiaW53aWR0aCA9IDYwKjYwKjI0KQ0KDQp0dzFkYXRlIDwtIHJhbmdlKHR3MSRkYXRldGltZSkNCih0dzFkYXRlWzFdICUtLSUgdHcxZGF0ZVsyXSkgJS8lIGRheXMoMSkNCg0KdGVzdCA8LSBzb2NpYWxfbWVkaWEgJT4lIA0KICBtdXRhdGUoZHQgPSBkYXRlKGRhdGV0aW1lKSkgJT4lIA0KICBjb3VudChzb3VyY2UsIGR0KSAlPiUgDQogIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBzb3VyY2UsDQogICAgICAgICAgICAgIHZhbHVlc19mcm9tID0gbikNCg0KZ2dwbG90KHRlc3QsIGFlcyh4ID0gZmIsIHkgPSB0dykpICsNCiAgZ2VvbV9wb2ludCgpDQpgYGANCg0KDQo=</div>
 
 
 
