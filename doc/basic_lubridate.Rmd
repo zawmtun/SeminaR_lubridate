@@ -1,12 +1,226 @@
 ---
-title: "R Notebook"
+title: "Dates and times"
 output: html_notebook
 ---
 
 ```{r}
 library(tidyverse)
+library(lubridate)
 library(here)
 ```
+
+# Functions for system date and time
+
+```{r}
+t <- today()
+t
+class(t)
+
+n <- now()
+n
+class(n)
+```
+
+# Create date/time from other objects
+
+Three ways:
+
+- From a string
+- From individual date-time components
+- From an existing date/time object
+
+## From a string
+
+```{r}
+ymd("2020-01-28")
+dmy("28jan2020")
+mdy("January 28th, 2020")
+```
+
+You can also convert dates from unquoted numbers.
+
+```{r}
+ymd(20200128)
+```
+
+Converting date and time. Note the default timezone.
+
+```{r}
+ymd_hms("2010-01-28 23:59:59")
+dmy_hms("28jan2020 23:59:59")
+dmy_hms("28jan2020 23-59-59")
+dmy_hm("28jan2020 23:20")
+dmy_h("28jan2020 23")
+```
+
+## From individual components
+
+```{r}
+make_datetime(
+  year = 2020,
+  month = 1,
+  day = 28,
+  hour = 14,
+  min = 40,
+  sec = 30
+)
+```
+
+Exercise 1: A dataframe `dat` is constructed, including components of date/time. Use these components to create a new date/time variable
+
+```{r}
+dat <- tibble(
+  year = 2020,
+  month = round(runif(20, min = 1, max = 12)),
+  day = round(runif(20, min = 1, max = 28)),
+  hour = round(runif(20, min = 1, max = 24)),
+  minute = round(runif(20, min = 1, max = 59)),
+  second = round(runif(20, min = 1, max = 59))
+)
+```
+
+```{r}
+dat1 <- dat %>% 
+  mutate(dt = make_datetime(year, month, day, hour, minute, second)) %>% 
+  select(dt)
+```
+
+# Extracting components
+
+```{r}
+a <- "2020-05-04 02:55:54"
+a_dt <- ymd_hms(a)
+
+year(a_dt)
+day(a_dt)
+hour(a_dt)
+
+mday(a_dt) # day of the month
+yday(a_dt) # day of the year
+wday(a_dt) # day of the week
+```
+
+Exercise 2: Extract each component of the datetime variable `dt` from `dat1` dataframe, including day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.
+
+```{r}
+dat2 <- dat1 %>% 
+  mutate(year = year(dt),
+         month = month(dt, label = TRUE),
+         day = day(dt),
+         hour = hour(dt),
+         minute = minute(dt),
+         second = second(dt),
+         day_of_the_month = mday(dt),
+         day_of_the_year = yday(dt),
+         day_of_the_week = wday(dt, label = TRUE))
+```
+
+# Time spans
+
+Three important classes that represent time spans:
+
+- Duration: an exact number of seconds (for a datetime)
+- Periods: human units like weeks and months
+- Intervals: a starting and ending point
+
+## Duration
+
+If John Snow is alive today, how old would he be?
+
+```{r}
+js_age <- today() - ymd(18130315)
+js_age
+class(js_age)
+```
+
+
+```{r}
+as.difftime(seq(from = 10, to = 50, by = 10), units = "secs")
+as.difftime(seq(from = 10, to = 50, by = 10), units = "hours")
+as.difftime(seq(from = 10, to = 50, by = 10), units = "weeks")
+```
+
+`{lubridate}` always represents a duration in seconds.
+
+```{r}
+as.duration(js_age)
+```
+
+There are convenient functions to construct durations but it's always represented in seconds.
+
+```{r}
+dseconds(15)
+dminutes(10)
+dhours(c(12, 24))
+ddays(0:5)
+dweeks(3)
+dyears(1)
+```
+
+You can add and multiply durations:
+
+```{r}
+2 * dyears(2)
+dyears(1) + dweeks(4) + ddays(7)
+```
+
+You can add and subtract durations to and from days:
+
+```{r}
+tomorrow <- today() + ddays(1)
+last_year <- today() - dyears(1)
+```
+
+However, because durations represent an exact number of seconds, sometimes you might get an unexpected result:
+
+```{r}
+one_pm <- ymd_hms("2016-03-12 13:00:00", tz = "America/New_York")
+
+one_pm
+one_pm + ddays(1)
+```
+
+## Periods
+
+```{r}
+one_pm
+one_pm + days(1)
+```
+
+Constructor functions for periods:
+
+```{r}
+seconds(15)
+minutes(10)
+hours(c(12, 24))
+days(7)
+months(1:6)
+weeks(3)
+years(1)
+```
+
+
+
+```{r}
+dat3 <- dat1
+dat3$r <- sample(-20:20, nrow(dat3), replace = TRUE)
+
+dat3 <- dat3 %>% 
+  mutate(d = dyears(r),
+         p = years(r),
+         dt_duration = dt + rand_duration,
+         dt_period = dt + rand_period)
+
+testthat::expect_identical(dat3$dt_duration, dat3$dt_period)
+```
+
+
+
+Time zones
+
+
+
+
 
 ```{r}
 fb <- read_csv(here("data", "fb_new.csv"))
