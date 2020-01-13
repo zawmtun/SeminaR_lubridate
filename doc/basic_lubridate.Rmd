@@ -87,6 +87,8 @@ dat1 <- dat %>%
 
 # Extracting components
 
+You can extract each component of a date/time object.
+
 ```{r}
 a <- "2020-05-04 02:55:54"
 a_dt <- ymd_hms(a)
@@ -94,11 +96,26 @@ a_dt <- ymd_hms(a)
 year(a_dt)
 day(a_dt)
 hour(a_dt)
+```
 
+You can also extract the day of the week, month, or year for a given date/time.
+
+```{r}
 mday(a_dt) # day of the month
 yday(a_dt) # day of the year
 wday(a_dt) # day of the week
 ```
+
+If you want to know which quarter or semester (half a year) is in, you can do that too.
+
+```{r}
+quarter(a_dt)
+quarter(a_dt, with_year = TRUE)
+
+semester(a_dt)
+semester(a_dt, with_year = TRUE)
+```
+
 
 Exercise 2: Extract each component of the datetime variable `dt` from `dat1` dataframe, including day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.
 
@@ -113,6 +130,14 @@ dat2 <- dat1 %>%
          day_of_the_month = mday(dt),
          day_of_the_year = yday(dt),
          day_of_the_week = wday(dt, label = TRUE))
+```
+
+What is the frequency distribution of the quarters of these dates?
+
+```{r}
+dat1 %>% 
+  mutate(q = quarter(dt, with_year = TRUE)) %>% 
+  count(q)
 ```
 
 # Time spans
@@ -199,7 +224,27 @@ weeks(3)
 years(1)
 ```
 
+You can add and multiple periods.
 
+```{r}
+10 * (months(6) + days(1))
+days(50) + hours(25) + minutes(2)
+```
+
+You can also add periods to dates. Compared to durations, periods are more likely to do what you expect:
+
+```{r}
+# A leap year
+ymd("2016-01-01") + dyears(1)
+ymd("2016-01-01") + years(1)
+
+# Daylight Savings Time
+one_pm
+one_pm + ddays(1)
+one_pm + days(1)
+```
+
+Here is an example of differences in the results of adding durations and periods to a date/time because of leap year.
 
 ```{r}
 dat3 <- dat1
@@ -208,15 +253,25 @@ dat3$r <- sample(-20:20, nrow(dat3), replace = TRUE)
 dat3 <- dat3 %>% 
   mutate(d = dyears(r),
          p = years(r),
-         dt_duration = dt + rand_duration,
-         dt_period = dt + rand_period)
+         dt_duration = dt + d,
+         dt_period = dt + p,
+         diff = as.duration(dt_duration - dt_period))
 
-testthat::expect_identical(dat3$dt_duration, dat3$dt_period)
+dat3
+```
+
+## Intervals
+
+
+
+```{r}
+dyears(1)/ddays(1)
+years(1)/days(1)
 ```
 
 
 
-Time zones
+# Time zones
 
 
 
