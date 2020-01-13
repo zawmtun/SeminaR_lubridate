@@ -144,9 +144,11 @@ dat1 %>%
 
 Three important classes that represent time spans:
 
-- Duration: an exact number of seconds (for a datetime)
-- Periods: human units like weeks and months
-- Intervals: a starting and ending point
+- Duration: an exact number of seconds
+- Intervals: measured in seconds but with a starting date
+- Periods: human units like weeks and months. Unlike seconds, years and months can vary because of different days in a month, leap year, and daylight savings time. Period allows adding 1 month to 1st February and become 1st March; it allows the calculation in calendar or clock time rather than in seconds.
+
+Let's take a look at functions that work with these time span classes.
 
 ## Duration
 
@@ -205,7 +207,20 @@ one_pm
 one_pm + ddays(1)
 ```
 
+## Intervals
+
+
+
+```{r}
+dyears(1)/ddays(1)
+years(1)/days(1)
+```
+
+
+
 ## Periods
+
+
 
 ```{r}
 one_pm
@@ -258,15 +273,6 @@ dat3 <- dat3 %>%
          diff = as.duration(dt_duration - dt_period))
 
 dat3
-```
-
-## Intervals
-
-
-
-```{r}
-dyears(1)/ddays(1)
-years(1)/days(1)
 ```
 
 
