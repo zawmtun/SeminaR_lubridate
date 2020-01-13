@@ -220,8 +220,6 @@ years(1)/days(1)
 
 ## Periods
 
-
-
 ```{r}
 one_pm
 one_pm + days(1)
@@ -239,14 +237,7 @@ weeks(3)
 years(1)
 ```
 
-You can add and multiple periods.
-
-```{r}
-10 * (months(6) + days(1))
-days(50) + hours(25) + minutes(2)
-```
-
-You can also add periods to dates. Compared to durations, periods are more likely to do what you expect:
+You can add periods to dates. Compared to durations, periods are more likely to do what you expect:
 
 ```{r}
 # A leap year
@@ -257,6 +248,13 @@ ymd("2016-01-01") + years(1)
 one_pm
 one_pm + ddays(1)
 one_pm + days(1)
+```
+
+You can also add and multiple periods.
+
+```{r}
+10 * (months(6) + days(1))
+days(50) + hours(25) + minutes(2)
 ```
 
 Here is an example of differences in the results of adding durations and periods to a date/time because of leap year.
@@ -279,8 +277,27 @@ dat3
 
 # Time zones
 
+System time zone
+
+Complete list of timezone names
+
+Default time zone: UTC (Coordinated Universal Time), does not have DST
 
 
+Change time zone in two ways:
+
+1. Keep the instant in time the same, and change how it's displayed.
+
+```{r}
+with_tz()
+```
+
+
+2. Change the underlying instant in time. Use this when the instant is labelled with an incorrect timezone.
+
+```{r}
+force_tz()
+```
 
 
 ```{r}
