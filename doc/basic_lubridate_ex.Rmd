@@ -1,14 +1,17 @@
 ---
 title: "Dates and times"
-output: html_notebook
+output:
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(lubridate)
 ```
 
-In this workshop, we will discuss how to work with dates and times in R.
+We will discuss how to work with dates and times in R. Most contents in this session are based on [R for Data Science](https://r4ds.had.co.nz/dates-and-times.html#time-zones) book.
 
 # System date and time
 
@@ -71,7 +74,7 @@ make_datetime(
 )
 ```
 
-### Exercise 1
+## Exercise 1
 
 A dataframe `dat` is provided, including components of date/time. Use these components to create a new date/time variable and assign the dataframe a new name `dat1`.
 
@@ -87,8 +90,8 @@ dat <- tibble(
 ```
 
 ```{r}
-dat1 <- dat %>% 
-  mutate(dt = make_datetime(year, month, day, hour, minute, second))
+# Ex:
+
 ```
 
 # Extracting components
@@ -122,34 +125,25 @@ semester(a_dt)
 semester(a_dt, with_year = TRUE)
 ```
 
-### Exercise 2
+## Exercise 2
 
 Break down the variable `dt` from `dat1` and create a variable for each component. In addition, find out the day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.
 
 ```{r}
-dat2 <-  dat1 %>% 
-  select(dt)
-```
-
-
-```{r}
-dat2 %>% 
-  mutate(year = year(dt),
-         month = month(dt, label = TRUE),
-         day = day(dt),
-         hour = hour(dt),
-         minute = minute(dt),
-         second = second(dt),
-         day_of_the_month = mday(dt),
-         day_of_the_year = yday(dt),
-         day_of_the_week = wday(dt, label = TRUE))
+# Ex:
 ```
 
 What is the frequency distribution of the quarters of these dates?
 
+```{r echo=FALSE, results="hide"}
+dat1 <- dat %>% 
+  mutate(dt = make_datetime(year, month, day, hour, minute, second))
+```
+
+
 ```{r}
 dat1 %>% 
-  mutate(q = quarter(dt, with_year = TRUE)) %>% 
+  mutate(q = quarter(dt)) %>% 
   count(q)
 ```
 
@@ -259,7 +253,7 @@ You can also add and multiply periods.
 days(50) + hours(25) + minutes(2)
 ```
 
-### Exercise 3
+## Exercise 3
 
 A new column year is created in `dat1` using random numbers. Convert this column into both duration and period and add them to `dt` column. Check whether and to what extent the results are different and why?
 
@@ -267,14 +261,8 @@ A new column year is created in `dat1` using random numbers. Convert this column
 dat3 <- dat1
 dat3$year <- sample(-20:20, nrow(dat3), replace = TRUE)
 
-dat3 <- dat3 %>% 
-  mutate(d = dyears(year),
-         p = years(year),
-         dt_duration = dt + d,
-         dt_period = dt + p,
-         diff = as.duration(dt_duration - dt_period))
+# Ex:
 
-dat3
 ```
 
 ## Intervals
