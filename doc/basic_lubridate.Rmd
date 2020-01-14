@@ -81,8 +81,7 @@ dat <- tibble(
 
 ```{r}
 dat1 <- dat %>% 
-  mutate(dt = make_datetime(year, month, day, hour, minute, second)) %>% 
-  select(dt)
+  mutate(dt = make_datetime(year, month, day, hour, minute, second))
 ```
 
 # Extracting components
@@ -119,7 +118,13 @@ semester(a_dt, with_year = TRUE)
 Exercise 2: Extract each component of the datetime variable `dt` from `dat1` dataframe, including day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.
 
 ```{r}
-dat2 <- dat1 %>% 
+dat2 <-  dat1 %>% 
+  select(dt)
+```
+
+
+```{r}
+dat2 %>% 
   mutate(year = year(dt),
          month = month(dt, label = TRUE),
          day = day(dt),
@@ -263,7 +268,7 @@ dat3
 
 ## Intervals
 
-`dyears(1) / ddays(1)` returns 365 because durations are always represented by a number of seconds, and a duration of a year is defined as 365 days worth of seconds.
+`dyears(1) / ddays(1)` returns 365 because durations are always represented by exact number of seconds, and a duration of a year is defined as 365 days worth of seconds.
 
 Let's do the same calculation using periods.
 
@@ -271,7 +276,7 @@ Let's do the same calculation using periods.
 years(1) / days(1)
 ```
 
-A period represents calendar time and it returns 365.25 with a message stating that it's an imprecise estimate. Why is that? That is because it would return 366 if it was a leap year. Since we do not know when that period started, we cannot know the period accurately; we should use an interval instead (if we have the start dates).
+A period represents calendar time and it returns 365.25 with a message stating that it's an imprecise estimate. Why is that? That is because it would return 366 if it was a leap year. Since we do not know the date that period started, we cannot know the period accurately; we should use an interval instead (if we have information on the start dates).
 
 `interval()` function creates interval objects. `%--%` is the shorthand for the function. An interval object prints the start and end dates rather than seconds.
 
@@ -312,11 +317,35 @@ int_overlaps(my_int1, my_int2)
 
 # Time zones
 
-System time zone
+Time zone is an attribute of a date/time object that controls how the time is displayed. Default time zone in `lubridate` parse functions is UTC (Coordinated Universal Time).
 
-Complete list of timezone names
+```{r}
+t1 <- ymd_hms("2020-01-01 6:30:00", tz = "Asia/Yangon")
+t2 <- ymd_hms("2020-01-01 8:00:00", tz = "Singapore")
+t3 <- ymd_hms("2020-01-01 0:00:00", tz = "GMT")
+```
 
-Default time zone: UTC (Coordinated Universal Time), does not have DST
+These 3 times are the same.
+
+```{r}
+t1 - t2
+t1 - t3
+```
+
+R uses the [international standard IANA time zones](https://www.iana.org/time-zones). These use a consistent naming scheme "/", typically in the form "<continent>/<city>" Examples include “America/New_York”, “Europe/Paris”, and “Pacific/Auckland”. There are a few exceptions because not every country lies on a continent. For example, "Singapore".
+
+You can find out what R thinks your current time zone is.
+
+```{r}
+Sys.timezone()
+```
+
+You can check out the complete list of all time zones using `OlsonNames()`
+
+```{r}
+length(OlsonNames())
+head(OlsonNames())
+```
 
 
 Change time zone in two ways:
@@ -333,6 +362,10 @@ with_tz()
 ```{r}
 force_tz()
 ```
+
+
+
+
 
 
 ```{r}

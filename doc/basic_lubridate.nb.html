@@ -1762,10 +1762,14 @@ library(here)</code></pre>
 <h1>Functions for system date and time</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudCA8LSB0b2RheSgpXG50XG5jbGFzcyh0KVxuXG5uIDwtIG5vdygpXG5uXG5jbGFzcyhuKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r t &lt;- today() t class(t)</p>
-<p>n &lt;- now() n class(n)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudCA8LSB0b2RheSgpXG50XG5jbGFzcyh0KVxuXG5uIDwtIG5vdygpXG5uXG5jbGFzcyhuKVxuYGBgIn0= -->
+<pre class="r"><code>t &lt;- today()
+t
+class(t)
+
+n &lt;- now()
+n
+class(n)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1782,26 +1786,30 @@ library(here)</code></pre>
 <h2>From a string</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxueW1kKFxcMjAyMC0wMS0yOFxcKVxuZG15KFxcMjhqYW4yMDIwXFwpXG5tZHkoXFxKYW51YXJ5IDI4dGhcbmBgYCJ9 -->
-<p><code>r</code>r ymd(\2020-01-28) dmy(\28jan2020) mdy(28th ```</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKFwiMjAyMC0wMS0yOFwiKVxuZG15KFwiMjhqYW4yMDIwXCIpXG5tZHkoXCJKYW51YXJ5IDI4dGgsIDIwMjBcIilcbmBgYCJ9 -->
+<pre class="r"><code>ymd(&quot;2020-01-28&quot;)
+dmy(&quot;28jan2020&quot;)
+mdy(&quot;January 28th, 2020&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can also convert dates from unquoted numbers.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxueW1kKDIwMjAwMTI4KVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r ymd(20200128)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKDIwMjAwMTI4KVxuYGBgIn0= -->
+<pre class="r"><code>ymd(20200128)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Converting date and time. Note the default timezone.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxueW1kX2htcyhcXDIwMTAtMDEtMjggMjM6NTk6NTlcXClcbmRteV9obXMoXFwyOGphbjIwMjAgMjM6NTk6NTlcXClcbmRteV9obXMoXFwyOGphbjIwMjAgMjMtNTktNTlcXClcbmRteV9obShcXDI4amFuMjAyMCAyMzoyMFxcKVxuZG15X2goXFwyOGphbjIwMjAgMjNcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r ymd_hms(\2010-01-28 23:59:59) dmy_hms(\28jan2020 23:59:59) dmy_hms(\28jan2020 23-59-59) dmy_hm(\28jan2020 23:20) dmy_h(\28jan2020 23)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kX2htcyhcIjIwMTAtMDEtMjggMjM6NTk6NTlcIilcbmRteV9obXMoXCIyOGphbjIwMjAgMjM6NTk6NTlcIilcbmRteV9obXMoXCIyOGphbjIwMjAgMjMtNTktNTlcIilcbmRteV9obShcIjI4amFuMjAyMCAyMzoyMFwiKVxuZG15X2goXCIyOGphbjIwMjAgMjNcIilcbmBgYCJ9 -->
+<pre class="r"><code>ymd_hms(&quot;2010-01-28 23:59:59&quot;)
+dmy_hms(&quot;28jan2020 23:59:59&quot;)
+dmy_hms(&quot;28jan2020 23-59-59&quot;)
+dmy_hm(&quot;28jan2020 23:20&quot;)
+dmy_h(&quot;28jan2020 23&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1810,26 +1818,38 @@ library(here)</code></pre>
 <h2>From individual components</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubWFrZV9kYXRldGltZShcbiAgeWVhciA9IDIwMjAsXG4gIG1vbnRoID0gMSxcbiAgZGF5ID0gMjgsXG4gIGhvdXIgPSAxNCxcbiAgbWluID0gNDAsXG4gIHNlYyA9IDMwXG4pXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r make_datetime( year = 2020, month = 1, day = 28, hour = 14, min = 40, sec = 30 )</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFrZV9kYXRldGltZShcbiAgeWVhciA9IDIwMjAsXG4gIG1vbnRoID0gMSxcbiAgZGF5ID0gMjgsXG4gIGhvdXIgPSAxNCxcbiAgbWluID0gNDAsXG4gIHNlYyA9IDMwXG4pXG5gYGAifQ== -->
+<pre class="r"><code>make_datetime(
+  year = 2020,
+  month = 1,
+  day = 28,
+  hour = 14,
+  min = 40,
+  sec = 30
+)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Exercise 1: A dataframe <code>dat</code> is constructed, including components of date/time. Use these components to create a new date/time variable</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0IDwtIHRpYmJsZShcbiAgeWVhciA9IDIwMjAsXG4gIG1vbnRoID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDEyKSksXG4gIGRheSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSAyOCkpLFxuICBob3VyID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDI0KSksXG4gIG1pbnV0ZSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSA1OSkpLFxuICBzZWNvbmQgPSByb3VuZChydW5pZigyMCwgbWluID0gMSwgbWF4ID0gNTkpKVxuKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r dat &lt;- tibble( year = 2020, month = round(runif(20, min = 1, max = 12)), day = round(runif(20, min = 1, max = 28)), hour = round(runif(20, min = 1, max = 24)), minute = round(runif(20, min = 1, max = 59)), second = round(runif(20, min = 1, max = 59)) )</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0IDwtIHRpYmJsZShcbiAgeWVhciA9IDIwMjAsXG4gIG1vbnRoID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDEyKSksXG4gIGRheSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSAyOCkpLFxuICBob3VyID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDI0KSksXG4gIG1pbnV0ZSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSA1OSkpLFxuICBzZWNvbmQgPSByb3VuZChydW5pZigyMCwgbWluID0gMSwgbWF4ID0gNTkpKVxuKVxuYGBgIn0= -->
+<pre class="r"><code>dat &lt;- tibble(
+  year = 2020,
+  month = round(runif(20, min = 1, max = 12)),
+  day = round(runif(20, min = 1, max = 28)),
+  hour = round(runif(20, min = 1, max = 24)),
+  minute = round(runif(20, min = 1, max = 59)),
+  second = round(runif(20, min = 1, max = 59))
+)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0MSA8LSBkYXQgJT4lIFxuICBtdXRhdGUoZHQgPSBtYWtlX2RhdGV0aW1lKHllYXIsIG1vbnRoLCBkYXksIGhvdXIsIG1pbnV0ZSwgc2Vjb25kKSkgJT4lIFxuICBzZWxlY3QoZHQpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r dat1 &lt;- dat %&gt;% mutate(dt = make_datetime(year, month, day, hour, minute, second)) %&gt;% select(dt)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0MSA8LSBkYXQgJT4lIFxuICBtdXRhdGUoZHQgPSBtYWtlX2RhdGV0aW1lKHllYXIsIG1vbnRoLCBkYXksIGhvdXIsIG1pbnV0ZSwgc2Vjb25kKSlcbmBgYCJ9 -->
+<pre class="r"><code>dat1 &lt;- dat %&gt;% 
+  mutate(dt = make_datetime(year, month, day, hour, minute, second))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1840,48 +1860,70 @@ library(here)</code></pre>
 <p>You can extract each component of a date/time object.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYSA8LSBcXDIwMjAtMDUtMDQgMDI6NTU6NTRcXFxuYV9kdCA8LSB5bWRfaG1zKGEpXG5cbnllYXIoYV9kdClcbmRheShhX2R0KVxuaG91cihhX2R0KVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r a &lt;- \2020-05-04 02:55:54<br />
-a_dt &lt;- ymd_hms(a)</p>
-<p>year(a_dt) day(a_dt) hour(a_dt)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYSA8LSBcIjIwMjAtMDUtMDQgMDI6NTU6NTRcIlxuYV9kdCA8LSB5bWRfaG1zKGEpXG5cbnllYXIoYV9kdClcbmRheShhX2R0KVxuaG91cihhX2R0KVxuYGBgIn0= -->
+<pre class="r"><code>a &lt;- &quot;2020-05-04 02:55:54&quot;
+a_dt &lt;- ymd_hms(a)
+
+year(a_dt)
+day(a_dt)
+hour(a_dt)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can also extract the day of the week, month, or year for a given date/time.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubWRheShhX2R0KSAjIGRheSBvZiB0aGUgbW9udGhcbnlkYXkoYV9kdCkgIyBkYXkgb2YgdGhlIHllYXJcbndkYXkoYV9kdCkgIyBkYXkgb2YgdGhlIHdlZWtcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r mday(a_dt) # day of the month yday(a_dt) # day of the year wday(a_dt) # day of the week</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWRheShhX2R0KSAjIGRheSBvZiB0aGUgbW9udGhcbnlkYXkoYV9kdCkgIyBkYXkgb2YgdGhlIHllYXJcbndkYXkoYV9kdCkgIyBkYXkgb2YgdGhlIHdlZWtcbmBgYCJ9 -->
+<pre class="r"><code>mday(a_dt) # day of the month
+yday(a_dt) # day of the year
+wday(a_dt) # day of the week</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>If you want to know which quarter or semester (half a year) is in, you can do that too.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucXVhcnRlcihhX2R0KVxucXVhcnRlcihhX2R0LCB3aXRoX3llYXIgPSBUUlVFKVxuXG5zZW1lc3RlcihhX2R0KVxuc2VtZXN0ZXIoYV9kdCwgd2l0aF95ZWFyID0gVFJVRSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r quarter(a_dt) quarter(a_dt, with_year = TRUE)</p>
-<p>semester(a_dt) semester(a_dt, with_year = TRUE)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucXVhcnRlcihhX2R0KVxucXVhcnRlcihhX2R0LCB3aXRoX3llYXIgPSBUUlVFKVxuXG5zZW1lc3RlcihhX2R0KVxuc2VtZXN0ZXIoYV9kdCwgd2l0aF95ZWFyID0gVFJVRSlcbmBgYCJ9 -->
+<pre class="r"><code>quarter(a_dt)
+quarter(a_dt, with_year = TRUE)
+
+semester(a_dt)
+semester(a_dt, with_year = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Exercise 2: Extract each component of the datetime variable <code>dt</code> from <code>dat1</code> dataframe, including day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0MiA8LSBkYXQxICU+JSBcbiAgbXV0YXRlKHllYXIgPSB5ZWFyKGR0KSxcbiAgICAgICAgIG1vbnRoID0gbW9udGgoZHQsIGxhYmVsID0gVFJVRSksXG4gICAgICAgICBkYXkgPSBkYXkoZHQpLFxuICAgICAgICAgaG91ciA9IGhvdXIoZHQpLFxuICAgICAgICAgbWludXRlID0gbWludXRlKGR0KSxcbiAgICAgICAgIHNlY29uZCA9IHNlY29uZChkdCksXG4gICAgICAgICBkYXlfb2ZfdGhlX21vbnRoID0gbWRheShkdCksXG4gICAgICAgICBkYXlfb2ZfdGhlX3llYXIgPSB5ZGF5KGR0KSxcbiAgICAgICAgIGRheV9vZl90aGVfd2VlayA9IHdkYXkoZHQsIGxhYmVsID0gVFJVRSkpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r dat2 &lt;- dat1 %&gt;% mutate(year = year(dt), month = month(dt, label = TRUE), day = day(dt), hour = hour(dt), minute = minute(dt), second = second(dt), day_of_the_month = mday(dt), day_of_the_year = yday(dt), day_of_the_week = wday(dt, label = TRUE))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0MiA8LSAgZGF0MSAlPiUgXG4gIHNlbGVjdChkdClcbmBgYCJ9 -->
+<pre class="r"><code>dat2 &lt;-  dat1 %&gt;% 
+  select(dt)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0MiAlPiUgXG4gIG11dGF0ZSh5ZWFyID0geWVhcihkdCksXG4gICAgICAgICBtb250aCA9IG1vbnRoKGR0LCBsYWJlbCA9IFRSVUUpLFxuICAgICAgICAgZGF5ID0gZGF5KGR0KSxcbiAgICAgICAgIGhvdXIgPSBob3VyKGR0KSxcbiAgICAgICAgIG1pbnV0ZSA9IG1pbnV0ZShkdCksXG4gICAgICAgICBzZWNvbmQgPSBzZWNvbmQoZHQpLFxuICAgICAgICAgZGF5X29mX3RoZV9tb250aCA9IG1kYXkoZHQpLFxuICAgICAgICAgZGF5X29mX3RoZV95ZWFyID0geWRheShkdCksXG4gICAgICAgICBkYXlfb2ZfdGhlX3dlZWsgPSB3ZGF5KGR0LCBsYWJlbCA9IFRSVUUpKVxuYGBgIn0= -->
+<pre class="r"><code>dat2 %&gt;% 
+  mutate(year = year(dt),
+         month = month(dt, label = TRUE),
+         day = day(dt),
+         hour = hour(dt),
+         minute = minute(dt),
+         second = second(dt),
+         day_of_the_month = mday(dt),
+         day_of_the_year = yday(dt),
+         day_of_the_week = wday(dt, label = TRUE))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>What is the frequency distribution of the quarters of these dates?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0MSAlPiUgXG4gIG11dGF0ZShxID0gcXVhcnRlcihkdCwgd2l0aF95ZWFyID0gVFJVRSkpICU+JSBcbiAgY291bnQocSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r dat1 %&gt;% mutate(q = quarter(dt, with_year = TRUE)) %&gt;% count(q)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0MSAlPiUgXG4gIG11dGF0ZShxID0gcXVhcnRlcihkdCwgd2l0aF95ZWFyID0gVFJVRSkpICU+JSBcbiAgY291bnQocSlcbmBgYCJ9 -->
+<pre class="r"><code>dat1 %&gt;% 
+  mutate(q = quarter(dt, with_year = TRUE)) %&gt;% 
+  count(q)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1910,9 +1952,10 @@ class(js_age)</code></pre>
 <p>Duration is the difference between two dates or date/time objects. In base R, substraction of the two dates or date/time objects creates a <code>difftime</code> object. Its unit can be seconds, minutes, hours, days, and weeks (read the help file <code>?difftime</code>). It can be confusing to work with.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYXMuZGlmZnRpbWUoc2VxKGZyb20gPSAxMCwgdG8gPSA1MCwgYnkgPSAxMCksIHVuaXRzID0gXFxzZWNzXFwpXG5hcy5kaWZmdGltZShzZXEoZnJvbSA9IDEwLCB0byA9IDUwLCBieSA9IDEwKSwgdW5pdHMgPSBcXGhvdXJzXFwpXG5hcy5kaWZmdGltZShzZXEoZnJvbSA9IDEwLCB0byA9IDUwLCBieSA9IDEwKSwgdW5pdHMgPSBcXHdlZWtzXFwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r as.difftime(seq(from = 10, to = 50, by = 10), units = ) as.difftime(seq(from = 10, to = 50, by = 10), units = ) as.difftime(seq(from = 10, to = 50, by = 10), units = )</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMuZGlmZnRpbWUoc2VxKGZyb20gPSAxMCwgdG8gPSA1MCwgYnkgPSAxMCksIHVuaXRzID0gXCJzZWNzXCIpXG5hcy5kaWZmdGltZShzZXEoZnJvbSA9IDEwLCB0byA9IDUwLCBieSA9IDEwKSwgdW5pdHMgPSBcImhvdXJzXCIpXG5hcy5kaWZmdGltZShzZXEoZnJvbSA9IDEwLCB0byA9IDUwLCBieSA9IDEwKSwgdW5pdHMgPSBcIndlZWtzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>as.difftime(seq(from = 10, to = 50, by = 10), units = &quot;secs&quot;)
+as.difftime(seq(from = 10, to = 50, by = 10), units = &quot;hours&quot;)
+as.difftime(seq(from = 10, to = 50, by = 10), units = &quot;weeks&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1941,18 +1984,18 @@ dyears(1)</code></pre>
 <p>You can add and multiply durations:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuMiAqIGR5ZWFycygyKVxuZHllYXJzKDEpICsgZHdlZWtzKDQpICsgZGRheXMoNylcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r 2 * dyears(2) dyears(1) + dweeks(4) + ddays(7)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMiAqIGR5ZWFycygyKVxuZHllYXJzKDEpICsgZHdlZWtzKDQpICsgZGRheXMoNylcbmBgYCJ9 -->
+<pre class="r"><code>2 * dyears(2)
+dyears(1) + dweeks(4) + ddays(7)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can add and subtract durations to and from days:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudG9tb3Jyb3cgPC0gdG9kYXkoKSArIGRkYXlzKDEpXG5sYXN0X3llYXIgPC0gdG9kYXkoKSAtIGR5ZWFycygxKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r tomorrow &lt;- today() + ddays(1) last_year &lt;- today() - dyears(1)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9tb3Jyb3cgPC0gdG9kYXkoKSArIGRkYXlzKDEpXG5sYXN0X3llYXIgPC0gdG9kYXkoKSAtIGR5ZWFycygxKVxuYGBgIn0= -->
+<pre class="r"><code>tomorrow &lt;- today() + ddays(1)
+last_year &lt;- today() - dyears(1)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1962,6 +2005,14 @@ dyears(1)</code></pre>
 <p>Calculation using durations may get you an unexpected result. The number of seconds in a year or a month can vary because of different days in a month, leap year, and daylight savings time.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBIGxlYXAgeWVhclxueW1kKFwiMjAxNi0wMS0wMVwiKSArIGR5ZWFycygxKVxuXG4jIERheWxpZ2h0IFNhdmluZ3MgVGltZVxub25lX3BtIDwtIHltZF9obXMoXCIyMDE2LTAzLTEyIDEzOjAwOjAwXCIsIHR6ID0gXCJBbWVyaWNhL05ld19Zb3JrXCIpXG5vbmVfcG0gKyBkZGF5cygxKVxuYGBgIn0= -->
+<pre class="r"><code># A leap year
+ymd(&quot;2016-01-01&quot;) + dyears(1)
+
+# Daylight Savings Time
+one_pm &lt;- ymd_hms(&quot;2016-03-12 13:00:00&quot;, tz = &quot;America/New_York&quot;)
+one_pm + ddays(1)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>This is where period comes in. It allows adding one year to January 1, 2020 and become January 1, 2021, instead of 31 December 2020 because of the leap year. Compared to durations, periods are more likely to do what you expect:</p>
@@ -1982,52 +2033,57 @@ one_pm + days(1)</code></pre>
 <p>We can construct periods from numbers:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2Vjb25kcygxNSlcbm1pbnV0ZXMoMTApXG5ob3VycyhjKDEyLCAyNCkpXG5kYXlzKDcpXG5tb250aHMoMTo2KVxud2Vla3MoMylcbnllYXJzKDEpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r seconds(15) minutes(10) hours(c(12, 24)) days(7) months(1:6) weeks(3) years(1)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2Vjb25kcygxNSlcbm1pbnV0ZXMoMTApXG5ob3VycyhjKDEyLCAyNCkpXG5kYXlzKDcpXG5tb250aHMoMTo2KVxud2Vla3MoMylcbnllYXJzKDEpXG5gYGAifQ== -->
+<pre class="r"><code>seconds(15)
+minutes(10)
+hours(c(12, 24))
+days(7)
+months(1:6)
+weeks(3)
+years(1)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can also add and multiply periods.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuMTAgKiAobW9udGhzKDYpICsgZGF5cygxKSlcbmRheXMoNTApICsgaG91cnMoMjUpICsgbWludXRlcygyKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r 10 * (months(6) + days(1)) days(50) + hours(25) + minutes(2)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMTAgKiAobW9udGhzKDYpICsgZGF5cygxKSlcbmRheXMoNTApICsgaG91cnMoMjUpICsgbWludXRlcygyKVxuYGBgIn0= -->
+<pre class="r"><code>10 * (months(6) + days(1))
+days(50) + hours(25) + minutes(2)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Exercise 3: A new column year is created in <code>dat1</code> using random numbers. Convert this column into both duration and period and add them to <code>dt</code> column. Check whether and to what extent the results are different and why?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0MyA8LSBkYXQxXG5kYXQzJHIgPC0gc2FtcGxlKC0yMDoyMCwgbnJvdyhkYXQzKSwgcmVwbGFjZSA9IFRSVUUpXG5cbmRhdDMgPC0gZGF0MyAlPiUgXG4gIG11dGF0ZShkID0gZHllYXJzKHIpLFxuICAgICAgICAgcCA9IHllYXJzKHIpLFxuICAgICAgICAgZHRfZHVyYXRpb24gPSBkdCArIGQsXG4gICAgICAgICBkdF9wZXJpb2QgPSBkdCArIHAsXG4gICAgICAgICBkaWZmID0gYXMuZHVyYXRpb24oZHRfZHVyYXRpb24gLSBkdF9wZXJpb2QpKVxuXG5kYXQzXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r dat3 &lt;- dat1 dat3$r &lt;- sample(-20:20, nrow(dat3), replace = TRUE)</p>
-<p>dat3 &lt;- dat3 %&gt;% mutate(d = dyears(r), p = years(r), dt_duration = dt + d, dt_period = dt + p, diff = as.duration(dt_duration - dt_period))</p>
-<p>dat3</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0MyA8LSBkYXQxXG5kYXQzJHllYXIgPC0gc2FtcGxlKC0yMDoyMCwgbnJvdyhkYXQzKSwgcmVwbGFjZSA9IFRSVUUpXG5cbmRhdDMgPC0gZGF0MyAlPiUgXG4gIG11dGF0ZShkID0gZHllYXJzKHllYXIpLFxuICAgICAgICAgcCA9IHllYXJzKHllYXIpLFxuICAgICAgICAgZHRfZHVyYXRpb24gPSBkdCArIGQsXG4gICAgICAgICBkdF9wZXJpb2QgPSBkdCArIHAsXG4gICAgICAgICBkaWZmID0gYXMuZHVyYXRpb24oZHRfZHVyYXRpb24gLSBkdF9wZXJpb2QpKVxuXG5kYXQzXG5gYGAifQ== -->
+<pre class="r"><code>dat3 &lt;- dat1
+dat3$year &lt;- sample(-20:20, nrow(dat3), replace = TRUE)
+
+dat3 &lt;- dat3 %&gt;% 
+  mutate(d = dyears(year),
+         p = years(year),
+         dt_duration = dt + d,
+         dt_period = dt + p,
+         diff = as.duration(dt_duration - dt_period))
+
+dat3</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 <div id="intervals" class="section level2">
 <h2>Intervals</h2>
-<p><code>dyears(1) / ddays(1)</code> returns 365 because durations are always represented by a number of seconds, and a duration of a year is defined as 365 days worth of seconds.</p>
+<p><code>dyears(1) / ddays(1)</code> returns 365 because durations are always represented by exact number of seconds, and a duration of a year is defined as 365 days worth of seconds.</p>
 <p>Let’s do the same calculation using periods.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueWVhcnMoMSkgLyBkYXlzKDEpXG5cbmBgYCJ9 -->
-<pre class="r"><code>years(1) / days(1)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueWVhcnMoMSkgLyBkYXlzKDEpXG5gYGAifQ== -->
+<pre class="r"><code>years(1) / days(1)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZXN0aW1hdGUgb25seTogY29udmVydCB0byBpbnRlcnZhbHMgZm9yIGFjY3VyYWN5XG4ifQ== -->
-<pre><code>estimate only: convert to intervals for accuracy</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM2NS4yNVxuIn0= -->
-<pre><code>[1] 365.25</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>A period represents calendar time and it returns 365.25 with a message stating that it’s an imprecise estimate. Why is that? That is because it would return 366 if it was a leap year. Since we do not know when that period started, we cannot know the period accurately; we should use an interval instead (if we have the start dates).</p>
+<p>A period represents calendar time and it returns 365.25 with a message stating that it’s an imprecise estimate. Why is that? That is because it would return 366 if it was a leap year. Since we do not know the date that period started, we cannot know the period accurately; we should use an interval instead (if we have information on the start dates).</p>
 <p><code>interval()</code> function creates interval objects. <code>%--%</code> is the shorthand for the function. An interval object prints the start and end dates rather than seconds.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -2042,18 +2098,10 @@ my_int2</code></pre>
 <p>You can extract start and end dates.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW50X3N0YXJ0KG15X2ludDEpXG5gYGAifQ== -->
-<pre class="r"><code>int_start(my_int1)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW50X3N0YXJ0KG15X2ludDEpXG5pbnRfZW5kKG15X2ludDEpXG5gYGAifQ== -->
+<pre class="r"><code>int_start(my_int1)
+int_end(my_int1)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAxNi0wMy0xMiAxMzowMDowMCBVVENcIlxuIn0= -->
-<pre><code>[1] &quot;2016-03-12 13:00:00 UTC&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW50X2VuZChteV9pbnQxKVxuYGBgIn0= -->
-<pre class="r"><code>int_end(my_int1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAxNy0wNC0xMiAxMzowMDowMCBVVENcIlxuIn0= -->
-<pre><code>[1] &quot;2017-04-12 13:00:00 UTC&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can change the start or end dates in place.</p>
@@ -2069,13 +2117,10 @@ my_int1</code></pre>
 <p>You can test whether a date falls within an interval.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kX2htcyhcIjE5OTktMDUtMDEgMTM6MDA6MDBcIikgJXdpdGhpbiUgbXlfaW50MVxuXG5gYGAifQ== -->
-<pre class="r"><code>ymd_hms(&quot;1999-05-01 13:00:00&quot;) %within% my_int1
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kX2htcyhcIjIwMTYtMDUtMDEgMTM6MDA6MDBcIikgJXdpdGhpbiUgbXlfaW50MVxueW1kX2htcyhcIjE5OTktMDUtMDEgMTM6MDA6MDBcIikgJXdpdGhpbiUgbXlfaW50MVxuYGBgIn0= -->
+<pre class="r"><code>ymd_hms(&quot;2016-05-01 13:00:00&quot;) %within% my_int1
+ymd_hms(&quot;1999-05-01 13:00:00&quot;) %within% my_int1</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFXG4ifQ== -->
-<pre><code>[1] FALSE</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can also test whether two intervals overlaps.</p>
@@ -2090,8 +2135,55 @@ my_int1</code></pre>
 </div>
 <div id="time-zones" class="section level1">
 <h1>Time zones</h1>
-<p>System time zone</p>
-<p>Complete list of timezone names</p>
+<p>Time zone is an attribute of a date/time object that controls how the time is displayed.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kX2htcyhcIjIwMjAtMDEtMDEgMDowMDowMFwiLCB0eiA9IFwiR01UXCIpXG5cbmBgYCJ9 -->
+<pre class="r"><code>ymd_hms(&quot;2020-01-01 0:00:00&quot;, tz = &quot;GMT&quot;)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAyMC0wMS0wMSBHTVRcIlxuIn0= -->
+<pre><code>[1] &quot;2020-01-01 GMT&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>These 3 times are the same.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudDEgLSB0M1xuXG5gYGAifQ== -->
+<pre class="r"><code>t1 - t3
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGltZSBkaWZmZXJlbmNlIG9mIDAgc2Vjc1xuIn0= -->
+<pre><code>Time difference of 0 secs</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>R uses the <a href="https://www.iana.org/time-zones">international standard IANA time zones</a>. These use a consistent naming scheme “/”, typically in the form “<continent>/<city>” Examples include “America/New_York”, “Europe/Paris”, and “Pacific/Auckland”. There are a few exceptions because not every country lies on a continent. For example, “Singapore”.</p>
+<p>You can find out what R thinks your current time zone is.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLnRpbWV6b25lKClcblxuYGBgIn0= -->
+<pre class="r"><code>Sys.timezone()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQXNpYS9LdWFsYV9MdW1wdXJcIlxuIn0= -->
+<pre><code>[1] &quot;Asia/Kuala_Lumpur&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>You can check out the complete list of all time zones using <code>OlsonNames()</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChPbHNvbk5hbWVzKCkpXG5cbmBgYCJ9 -->
+<pre class="r"><code>head(OlsonNames())
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQWZyaWNhL0FiaWRqYW5cIiAgICAgXCJBZnJpY2EvQWNjcmFcIiAgICAgICBcIkFmcmljYS9BZGRpc19BYmFiYVwiIFwiQWZyaWNhL0FsZ2llcnNcIiAgICAgXCJBZnJpY2EvQXNtYXJhXCIgICAgICBcIkFmcmljYS9Bc21lcmFcIiAgICAgXG4ifQ== -->
+<pre><code>[1] &quot;Africa/Abidjan&quot;     &quot;Africa/Accra&quot;       &quot;Africa/Addis_Ababa&quot; &quot;Africa/Algiers&quot;     &quot;Africa/Asmara&quot;      &quot;Africa/Asmera&quot;     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>Default time zone: UTC (Coordinated Universal Time), does not have DST</p>
 <p>Change time zone in two ways:</p>
 <ol style="list-style-type: decimal">
@@ -2099,9 +2191,8 @@ my_int1</code></pre>
 </ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud2l0aF90eigpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r with_tz()</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2l0aF90eigpXG5gYGAifQ== -->
+<pre class="r"><code>with_tz()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2110,89 +2201,143 @@ my_int1</code></pre>
 </ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZm9yY2VfdHooKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r force_tz()</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yY2VfdHooKVxuYGBgIn0= -->
+<pre class="r"><code>force_tz()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZmIgPC0gcmVhZF9jc3YoaGVyZShcXGRhdGFcXCwgXFxmYl9uZXcuY3N2XFwpKVxudHcgPC0gcmVhZF9jc3YoaGVyZShcXGRhdGFcXCwgXFx0d19uZXcuY3N2XFwpKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r fb &lt;- read_csv(here(, _new.csv)) tw &lt;- read_csv(here(, _new.csv))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmIgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJmYl9uZXcuY3N2XCIpKVxudHcgPC0gcmVhZF9jc3YoaGVyZShcImRhdGFcIiwgXCJ0d19uZXcuY3N2XCIpKVxuYGBgIn0= -->
+<pre class="r"><code>fb &lt;- read_csv(here(&quot;data&quot;, &quot;fb_new.csv&quot;))
+tw &lt;- read_csv(here(&quot;data&quot;, &quot;tw_new.csv&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Who are the top 10 influencers who posted the highest number of tweets?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudG9wXzEwIDwtIHR3ZWV0ICU+JSBcbiAgY291bnQoaW5mbHVlbmNlciwgc29ydCA9IFRSVUUpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBwdWxsKGluZmx1ZW5jZXIpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r top_10 &lt;- tweet %&gt;% count(influencer, sort = TRUE) %&gt;% slice(1:10) %&gt;% pull(influencer)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9wXzEwIDwtIHR3ZWV0ICU+JSBcbiAgY291bnQoaW5mbHVlbmNlciwgc29ydCA9IFRSVUUpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBwdWxsKGluZmx1ZW5jZXIpXG5gYGAifQ== -->
+<pre class="r"><code>top_10 &lt;- tweet %&gt;% 
+  count(influencer, sort = TRUE) %&gt;% 
+  slice(1:10) %&gt;% 
+  pull(influencer)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Plot their total number of tweets against average AVE value using a scatter plot.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudHdlZXQgJT4lIFxuICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIFxuICBncm91cF9ieShpbmZsdWVuY2VyKSAlPiUgXG4gIHN1bW1hcmlzZShhdmUgPSBtZWFuKGF2ZSwgbmEucm0gPSBUUlVFKSxcbiAgICAgICAgICAgIG51bV90d2VldHMgPSBuKCkpICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gbnVtX3R3ZWV0cywgeSA9IGF2ZSkpICtcbiAgZ2VvbV9wb2ludCgpICtcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IGluZmx1ZW5jZXIpLCBoanVzdCA9IDEsIHZqdXN0ID0gLTAuNSwgc2l6ZSA9IDMsIGNoZWNrX292ZXJsYXAgPSBUUlVFKSArXG4gIGxhYnModGl0bGUgPSBcXEFWRSBhbmQgbnVtYmVyIG9mIHR3ZWV0cyBvZiBpbmZsdWVuY2Vyc1xcLCB4ID0gXFxOdW1iZXIgb2YgdHdlZXRzXFwsIHkgPSBcXE1lYW4gdmFsdWUgb2YgQVZFXFwpICtcbiAgc2NhbGVfeF9jb250aW51b3VzKGxpbWl0cyA9IGMoMCwgMTUwMCksIGJyZWFrcyA9IHNlcSgwLCAxNTAwLCAzMDApKSArXG4gIHRoZW1lX2NsYXNzaWMoKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r tweet %&gt;% filter(influencer %in% top_10) %&gt;% group_by(influencer) %&gt;% summarise(ave = mean(ave, na.rm = TRUE), num_tweets = n()) %&gt;% ggplot(aes(x = num_tweets, y = ave)) + geom_point() + geom_text(aes(label = influencer), hjust = 1, vjust = -0.5, size = 3, check_overlap = TRUE) + labs(title = and number of tweets of influencers, x = of tweets, y = value of AVE) + scale_x_continuous(limits = c(0, 1500), breaks = seq(0, 1500, 300)) + theme_classic()</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQgJT4lIFxuICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIFxuICBncm91cF9ieShpbmZsdWVuY2VyKSAlPiUgXG4gIHN1bW1hcmlzZShhdmUgPSBtZWFuKGF2ZSwgbmEucm0gPSBUUlVFKSxcbiAgICAgICAgICAgIG51bV90d2VldHMgPSBuKCkpICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gbnVtX3R3ZWV0cywgeSA9IGF2ZSkpICtcbiAgZ2VvbV9wb2ludCgpICtcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IGluZmx1ZW5jZXIpLCBoanVzdCA9IDEsIHZqdXN0ID0gLTAuNSwgc2l6ZSA9IDMsIGNoZWNrX292ZXJsYXAgPSBUUlVFKSArXG4gIGxhYnModGl0bGUgPSBcIkFWRSBhbmQgbnVtYmVyIG9mIHR3ZWV0cyBvZiBpbmZsdWVuY2Vyc1wiLCB4ID0gXCJOdW1iZXIgb2YgdHdlZXRzXCIsIHkgPSBcIk1lYW4gdmFsdWUgb2YgQVZFXCIpICtcbiAgc2NhbGVfeF9jb250aW51b3VzKGxpbWl0cyA9IGMoMCwgMTUwMCksIGJyZWFrcyA9IHNlcSgwLCAxNTAwLCAzMDApKSArXG4gIHRoZW1lX2NsYXNzaWMoKVxuYGBgIn0= -->
+<pre class="r"><code>tweet %&gt;% 
+  filter(influencer %in% top_10) %&gt;% 
+  group_by(influencer) %&gt;% 
+  summarise(ave = mean(ave, na.rm = TRUE),
+            num_tweets = n()) %&gt;% 
+  ggplot(aes(x = num_tweets, y = ave)) +
+  geom_point() +
+  geom_text(aes(label = influencer), hjust = 1, vjust = -0.5, size = 3, check_overlap = TRUE) +
+  labs(title = &quot;AVE and number of tweets of influencers&quot;, x = &quot;Number of tweets&quot;, y = &quot;Mean value of AVE&quot;) +
+  scale_x_continuous(limits = c(0, 1500), breaks = seq(0, 1500, 300)) +
+  theme_classic()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Nature of sentiments of the top 10 influencer’s tweets classified by algorithm.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudHdlZXQgJT4lIFxuICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIFxuICBtdXRhdGUoaW5mbHVlbmNlciA9IGZhY3RvcihpbmZsdWVuY2VyKSxcbiAgICAgICAgIHNlbnRpbWVudCA9IGZhY3RvcihzZW50aW1lbnQsIGxldmVscyA9IGMoXFxQb3NpdGl2ZVxcLCBcXE5lZ2F0aXZlXFwsIFxcTmV1dHJhbFxcLCBcXE5vdCBSYXRlZFxcKSkpICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gZmN0X2luZnJlcShpbmZsdWVuY2VyKSwgZmlsbCA9IGZjdF9yZXYoc2VudGltZW50KSkpICtcbiAgZ2VvbV9iYXIocG9zaXRpb24gPSBcXGZpbGxcXCkgK1xuICBzY2FsZV9maWxsX3ZpcmlkaXMoZGlzY3JldGUgPSBUUlVFLCBvcHRpb24gPSBcXERcXCwgYWxwaGEgPSAwLjgpICtcbiAgc2NhbGVfeV9jb250aW51b3VzKGxhYmVscyA9IHNjYWxlczo6cGVyY2VudF9mb3JtYXQoKSkgK1xuICBsYWJzKHggPSBcXEluZmx1ZW5jZXJcXCwgeSA9IFxcXFwsIGZpbGwgPSBcXFNlbnRpbWVudCBvZiB0d2VldHNcXCkgK1xuICB0aGVtZV9jbGFzc2ljKCkgK1xuICB0aGVtZShheGlzLnRleHQueCA9IGVsZW1lbnRfdGV4dChhbmdsZSA9IDkwLCBoanVzdCA9IDEsIHZqdXN0ID0gMC4zKSxcbiAgICAgICAgYXhpcy50aWNrcyA9IGVsZW1lbnRfYmxhbmsoKSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r tweet %&gt;% filter(influencer %in% top_10) %&gt;% mutate(influencer = factor(influencer), sentiment = factor(sentiment, levels = c(, , , Rated))) %&gt;% ggplot(aes(x = fct_infreq(influencer), fill = fct_rev(sentiment))) + geom_bar(position = ) + scale_fill_viridis(discrete = TRUE, option = , alpha = 0.8) + scale_y_continuous(labels = scales::percent_format()) + labs(x = , y = \, fill = of tweets) + theme_classic() + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.3), axis.ticks = element_blank())</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQgJT4lIFxuICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIFxuICBtdXRhdGUoaW5mbHVlbmNlciA9IGZhY3RvcihpbmZsdWVuY2VyKSxcbiAgICAgICAgIHNlbnRpbWVudCA9IGZhY3RvcihzZW50aW1lbnQsIGxldmVscyA9IGMoXCJQb3NpdGl2ZVwiLCBcIk5lZ2F0aXZlXCIsIFwiTmV1dHJhbFwiLCBcIk5vdCBSYXRlZFwiKSkpICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gZmN0X2luZnJlcShpbmZsdWVuY2VyKSwgZmlsbCA9IGZjdF9yZXYoc2VudGltZW50KSkpICtcbiAgZ2VvbV9iYXIocG9zaXRpb24gPSBcImZpbGxcIikgK1xuICBzY2FsZV9maWxsX3ZpcmlkaXMoZGlzY3JldGUgPSBUUlVFLCBvcHRpb24gPSBcIkRcIiwgYWxwaGEgPSAwLjgpICtcbiAgc2NhbGVfeV9jb250aW51b3VzKGxhYmVscyA9IHNjYWxlczo6cGVyY2VudF9mb3JtYXQoKSkgK1xuICBsYWJzKHggPSBcIkluZmx1ZW5jZXJcIiwgeSA9IFwiXCIsIGZpbGwgPSBcIlNlbnRpbWVudCBvZiB0d2VldHNcIikgK1xuICB0aGVtZV9jbGFzc2ljKCkgK1xuICB0aGVtZShheGlzLnRleHQueCA9IGVsZW1lbnRfdGV4dChhbmdsZSA9IDkwLCBoanVzdCA9IDEsIHZqdXN0ID0gMC4zKSxcbiAgICAgICAgYXhpcy50aWNrcyA9IGVsZW1lbnRfYmxhbmsoKSlcbmBgYCJ9 -->
+<pre class="r"><code>tweet %&gt;% 
+  filter(influencer %in% top_10) %&gt;% 
+  mutate(influencer = factor(influencer),
+         sentiment = factor(sentiment, levels = c(&quot;Positive&quot;, &quot;Negative&quot;, &quot;Neutral&quot;, &quot;Not Rated&quot;))) %&gt;% 
+  ggplot(aes(x = fct_infreq(influencer), fill = fct_rev(sentiment))) +
+  geom_bar(position = &quot;fill&quot;) +
+  scale_fill_viridis(discrete = TRUE, option = &quot;D&quot;, alpha = 0.8) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = &quot;Influencer&quot;, y = &quot;&quot;, fill = &quot;Sentiment of tweets&quot;) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.3),
+        axis.ticks = element_blank())</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudHdlZXQgJT4lIFxuICBncm91cF9ieShsYW5ndWFnZSkgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICBhcnJhbmdlKGRlc2MobikpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICtcbiAgZ2VvbV9iYXIoc3RhdCA9IFxcaWRlbnRpdHlcXCkgK1xuICBjb29yZF9mbGlwKCkgK1xuICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArXG4gIGxhYnMoeCA9IFxcTGFuZ3VhZ2VcXCwgeSA9IFxcTnVtYmVyIG9mIHR3ZWV0c1xcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r tweet %&gt;% group_by(language) %&gt;% summarise(n = n()) %&gt;% arrange(desc(n)) %&gt;% slice(1:10) %&gt;% mutate(pos = factor(language)) %&gt;% ggplot(aes(x = fct_reorder(pos, n), y = n)) + geom_bar(stat = ) + coord_flip() + scale_y_continuous(limits = c(0, 80000)) + labs(x = , y = of tweets)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQgJT4lIFxuICBncm91cF9ieShsYW5ndWFnZSkgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICBhcnJhbmdlKGRlc2MobikpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICtcbiAgZ2VvbV9iYXIoc3RhdCA9IFwiaWRlbnRpdHlcIikgK1xuICBjb29yZF9mbGlwKCkgK1xuICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArXG4gIGxhYnMoeCA9IFwiTGFuZ3VhZ2VcIiwgeSA9IFwiTnVtYmVyIG9mIHR3ZWV0c1wiKVxuYGBgIn0= -->
+<pre class="r"><code>tweet %&gt;% 
+  group_by(language) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  arrange(desc(n)) %&gt;% 
+  slice(1:10) %&gt;% 
+  mutate(pos = factor(language)) %&gt;% 
+  ggplot(aes(x = fct_reorder(pos, n), y = n)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  coord_flip() +
+  scale_y_continuous(limits  = c(0, 80000)) +
+  labs(x = &quot;Language&quot;, y = &quot;Number of tweets&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZmIgJT4lIFxuICBncm91cF9ieShsYW5ndWFnZSkgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICBhcnJhbmdlKGRlc2MobikpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICtcbiAgZ2VvbV9iYXIoc3RhdCA9IFxcaWRlbnRpdHlcXCkgK1xuICBjb29yZF9mbGlwKCkgK1xuICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArXG4gIGxhYnMoeCA9IFxcTGFuZ3VhZ2Ugb2YgcG9zdHNcXCwgeSA9IFxcTnVtYmVyIG9mIGZhY2Vib29rIHBvc3RzXFwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r fb %&gt;% group_by(language) %&gt;% summarise(n = n()) %&gt;% arrange(desc(n)) %&gt;% slice(1:10) %&gt;% mutate(pos = factor(language)) %&gt;% ggplot(aes(x = fct_reorder(pos, n), y = n)) + geom_bar(stat = ) + coord_flip() + scale_y_continuous(limits = c(0, 80000)) + labs(x = of posts, y = of facebook posts)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmIgJT4lIFxuICBncm91cF9ieShsYW5ndWFnZSkgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICBhcnJhbmdlKGRlc2MobikpICU+JSBcbiAgc2xpY2UoMToxMCkgJT4lIFxuICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICtcbiAgZ2VvbV9iYXIoc3RhdCA9IFwiaWRlbnRpdHlcIikgK1xuICBjb29yZF9mbGlwKCkgK1xuICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArXG4gIGxhYnMoeCA9IFwiTGFuZ3VhZ2Ugb2YgcG9zdHNcIiwgeSA9IFwiTnVtYmVyIG9mIGZhY2Vib29rIHBvc3RzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>fb %&gt;% 
+  group_by(language) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  arrange(desc(n)) %&gt;% 
+  slice(1:10) %&gt;% 
+  mutate(pos = factor(language)) %&gt;% 
+  ggplot(aes(x = fct_reorder(pos, n), y = n)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  coord_flip() +
+  scale_y_continuous(limits  = c(0, 80000)) +
+  labs(x = &quot;Language of posts&quot;, y = &quot;Number of facebook posts&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudHdlZXQxIDwtIHR3ZWV0ICU+JSBcbiAgbXV0YXRlKGRhdGV0aW1lID0gbWFrZV9kYXRldGltZSh5ZWFyLCBtb250aCwgZGF5LCB0aW1lICUvJSAxMDAsIHRpbWUgJSUgMTAwKSlcblxuZmIxIDwtIGZiICU+JSBcbiAgbXV0YXRlKGRhdGV0aW1lID0gcGFyc2VfZGF0ZV90aW1lKGRhdGUsIFxceW1kSE1TXFwpKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r tweet1 &lt;- tweet %&gt;% mutate(datetime = make_datetime(year, month, day, time %/% 100, time %% 100))</p>
-<p>fb1 &lt;- fb %&gt;% mutate(datetime = parse_date_time(date, ))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHdlZXQxIDwtIHR3ZWV0ICU+JSBcbiAgbXV0YXRlKGRhdGV0aW1lID0gbWFrZV9kYXRldGltZSh5ZWFyLCBtb250aCwgZGF5LCB0aW1lICUvJSAxMDAsIHRpbWUgJSUgMTAwKSlcblxuZmIxIDwtIGZiICU+JSBcbiAgbXV0YXRlKGRhdGV0aW1lID0gcGFyc2VfZGF0ZV90aW1lKGRhdGUsIFwieW1kSE1TXCIpKVxuYGBgIn0= -->
+<pre class="r"><code>tweet1 &lt;- tweet %&gt;% 
+  mutate(datetime = make_datetime(year, month, day, time %/% 100, time %% 100))
+
+fb1 &lt;- fb %&gt;% 
+  mutate(datetime = parse_date_time(date, &quot;ymdHMS&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc29jaWFsX21lZGlhIDwtIGJpbmRfcm93cyhcbiAgVHdpdHRlciA9IHR3ZWV0MSAlPiUgc2VsZWN0KGRhdGV0aW1lKSxcbiAgRmFjZWJvb2sgPSBmYjEgJT4lIHNlbGVjdChkYXRldGltZSksXG4gIC5pZCA9IFxcc291cmNlXFxcbilcblxuc29jaWFsX21lZGlhICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gZGF0ZXRpbWUsIGNvbCA9IHNvdXJjZSkpICtcbiAgZ2VvbV9mcmVxcG9seShiaW53aWR0aCA9IDYwKjYwKjI0KVxuXG50dzFkYXRlIDwtIHJhbmdlKHR3MSRkYXRldGltZSlcbih0dzFkYXRlWzFdICUtLSUgdHcxZGF0ZVsyXSkgJS8lIGRheXMoMSlcblxudGVzdCA8LSBzb2NpYWxfbWVkaWEgJT4lIFxuICBtdXRhdGUoZHQgPSBkYXRlKGRhdGV0aW1lKSkgJT4lIFxuICBjb3VudChzb3VyY2UsIGR0KSAlPiUgXG4gIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBzb3VyY2UsXG4gICAgICAgICAgICAgIHZhbHVlc19mcm9tID0gbilcblxuZ2dwbG90KHRlc3QsIGFlcyh4ID0gZmIsIHkgPSB0dykpICtcbiAgZ2VvbV9wb2ludCgpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r social_media &lt;- bind_rows( Twitter = tweet1 %&gt;% select(datetime), Facebook = fb1 %&gt;% select(datetime), .id = <br />
-)</p>
-<p>social_media %&gt;% ggplot(aes(x = datetime, col = source)) + geom_freqpoly(binwidth = 60<em>60</em>24)</p>
-<p>tw1date &lt;- range(tw1$datetime) (tw1date[1] %–% tw1date[2]) %/% days(1)</p>
-<p>test &lt;- social_media %&gt;% mutate(dt = date(datetime)) %&gt;% count(source, dt) %&gt;% pivot_wider(names_from = source, values_from = n)</p>
-<p>ggplot(test, aes(x = fb, y = tw)) + geom_point()</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29jaWFsX21lZGlhIDwtIGJpbmRfcm93cyhcbiAgVHdpdHRlciA9IHR3ZWV0MSAlPiUgc2VsZWN0KGRhdGV0aW1lKSxcbiAgRmFjZWJvb2sgPSBmYjEgJT4lIHNlbGVjdChkYXRldGltZSksXG4gIC5pZCA9IFwic291cmNlXCJcbilcblxuc29jaWFsX21lZGlhICU+JSBcbiAgZ2dwbG90KGFlcyh4ID0gZGF0ZXRpbWUsIGNvbCA9IHNvdXJjZSkpICtcbiAgZ2VvbV9mcmVxcG9seShiaW53aWR0aCA9IDYwKjYwKjI0KVxuXG50dzFkYXRlIDwtIHJhbmdlKHR3MSRkYXRldGltZSlcbih0dzFkYXRlWzFdICUtLSUgdHcxZGF0ZVsyXSkgJS8lIGRheXMoMSlcblxudGVzdCA8LSBzb2NpYWxfbWVkaWEgJT4lIFxuICBtdXRhdGUoZHQgPSBkYXRlKGRhdGV0aW1lKSkgJT4lIFxuICBjb3VudChzb3VyY2UsIGR0KSAlPiUgXG4gIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBzb3VyY2UsXG4gICAgICAgICAgICAgIHZhbHVlc19mcm9tID0gbilcblxuZ2dwbG90KHRlc3QsIGFlcyh4ID0gZmIsIHkgPSB0dykpICtcbiAgZ2VvbV9wb2ludCgpXG5gYGAifQ== -->
+<pre class="r"><code>social_media &lt;- bind_rows(
+  Twitter = tweet1 %&gt;% select(datetime),
+  Facebook = fb1 %&gt;% select(datetime),
+  .id = &quot;source&quot;
+)
+
+social_media %&gt;% 
+  ggplot(aes(x = datetime, col = source)) +
+  geom_freqpoly(binwidth = 60*60*24)
+
+tw1date &lt;- range(tw1$datetime)
+(tw1date[1] %--% tw1date[2]) %/% days(1)
+
+test &lt;- social_media %&gt;% 
+  mutate(dt = date(datetime)) %&gt;% 
+  count(source, dt) %&gt;% 
+  pivot_wider(names_from = source,
+              values_from = n)
+
+ggplot(test, aes(x = fb, y = tw)) +
+  geom_point()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGVzIGFuZCB0aW1lcyINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KGx1YnJpZGF0ZSkNCmxpYnJhcnkoaGVyZSkNCmBgYA0KDQojIEZ1bmN0aW9ucyBmb3Igc3lzdGVtIGRhdGUgYW5kIHRpbWUNCg0KYGBge3J9DQp0IDwtIHRvZGF5KCkNCnQNCmNsYXNzKHQpDQoNCm4gPC0gbm93KCkNCm4NCmNsYXNzKG4pDQpgYGANCg0KIyBDcmVhdGUgZGF0ZS90aW1lIGZyb20gb3RoZXIgb2JqZWN0cw0KDQpUaHJlZSB3YXlzOg0KDQotIEZyb20gYSBzdHJpbmcNCi0gRnJvbSBpbmRpdmlkdWFsIGRhdGUtdGltZSBjb21wb25lbnRzDQotIEZyb20gYW4gZXhpc3RpbmcgZGF0ZS90aW1lIG9iamVjdA0KDQojIyBGcm9tIGEgc3RyaW5nDQoNCmBgYHtyfQ0KeW1kKCIyMDIwLTAxLTI4IikNCmRteSgiMjhqYW4yMDIwIikNCm1keSgiSmFudWFyeSAyOHRoLCAyMDIwIikNCmBgYA0KDQpZb3UgY2FuIGFsc28gY29udmVydCBkYXRlcyBmcm9tIHVucXVvdGVkIG51bWJlcnMuDQoNCmBgYHtyfQ0KeW1kKDIwMjAwMTI4KQ0KYGBgDQoNCkNvbnZlcnRpbmcgZGF0ZSBhbmQgdGltZS4gTm90ZSB0aGUgZGVmYXVsdCB0aW1lem9uZS4NCg0KYGBge3J9DQp5bWRfaG1zKCIyMDEwLTAxLTI4IDIzOjU5OjU5IikNCmRteV9obXMoIjI4amFuMjAyMCAyMzo1OTo1OSIpDQpkbXlfaG1zKCIyOGphbjIwMjAgMjMtNTktNTkiKQ0KZG15X2htKCIyOGphbjIwMjAgMjM6MjAiKQ0KZG15X2goIjI4amFuMjAyMCAyMyIpDQpgYGANCg0KIyMgRnJvbSBpbmRpdmlkdWFsIGNvbXBvbmVudHMNCg0KYGBge3J9DQptYWtlX2RhdGV0aW1lKA0KICB5ZWFyID0gMjAyMCwNCiAgbW9udGggPSAxLA0KICBkYXkgPSAyOCwNCiAgaG91ciA9IDE0LA0KICBtaW4gPSA0MCwNCiAgc2VjID0gMzANCikNCmBgYA0KDQpFeGVyY2lzZSAxOiBBIGRhdGFmcmFtZSBgZGF0YCBpcyBjb25zdHJ1Y3RlZCwgaW5jbHVkaW5nIGNvbXBvbmVudHMgb2YgZGF0ZS90aW1lLiBVc2UgdGhlc2UgY29tcG9uZW50cyB0byBjcmVhdGUgYSBuZXcgZGF0ZS90aW1lIHZhcmlhYmxlDQoNCmBgYHtyfQ0KZGF0IDwtIHRpYmJsZSgNCiAgeWVhciA9IDIwMjAsDQogIG1vbnRoID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDEyKSksDQogIGRheSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSAyOCkpLA0KICBob3VyID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDI0KSksDQogIG1pbnV0ZSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSA1OSkpLA0KICBzZWNvbmQgPSByb3VuZChydW5pZigyMCwgbWluID0gMSwgbWF4ID0gNTkpKQ0KKQ0KYGBgDQoNCmBgYHtyfQ0KZGF0MSA8LSBkYXQgJT4lIA0KICBtdXRhdGUoZHQgPSBtYWtlX2RhdGV0aW1lKHllYXIsIG1vbnRoLCBkYXksIGhvdXIsIG1pbnV0ZSwgc2Vjb25kKSkgJT4lIA0KICBzZWxlY3QoZHQpDQpgYGANCg0KIyBFeHRyYWN0aW5nIGNvbXBvbmVudHMNCg0KWW91IGNhbiBleHRyYWN0IGVhY2ggY29tcG9uZW50IG9mIGEgZGF0ZS90aW1lIG9iamVjdC4NCg0KYGBge3J9DQphIDwtICIyMDIwLTA1LTA0IDAyOjU1OjU0Ig0KYV9kdCA8LSB5bWRfaG1zKGEpDQoNCnllYXIoYV9kdCkNCmRheShhX2R0KQ0KaG91cihhX2R0KQ0KYGBgDQoNCllvdSBjYW4gYWxzbyBleHRyYWN0IHRoZSBkYXkgb2YgdGhlIHdlZWssIG1vbnRoLCBvciB5ZWFyIGZvciBhIGdpdmVuIGRhdGUvdGltZS4NCg0KYGBge3J9DQptZGF5KGFfZHQpICMgZGF5IG9mIHRoZSBtb250aA0KeWRheShhX2R0KSAjIGRheSBvZiB0aGUgeWVhcg0Kd2RheShhX2R0KSAjIGRheSBvZiB0aGUgd2Vlaw0KYGBgDQoNCklmIHlvdSB3YW50IHRvIGtub3cgd2hpY2ggcXVhcnRlciBvciBzZW1lc3RlciAoaGFsZiBhIHllYXIpIGlzIGluLCB5b3UgY2FuIGRvIHRoYXQgdG9vLg0KDQpgYGB7cn0NCnF1YXJ0ZXIoYV9kdCkNCnF1YXJ0ZXIoYV9kdCwgd2l0aF95ZWFyID0gVFJVRSkNCg0Kc2VtZXN0ZXIoYV9kdCkNCnNlbWVzdGVyKGFfZHQsIHdpdGhfeWVhciA9IFRSVUUpDQpgYGANCg0KRXhlcmNpc2UgMjogRXh0cmFjdCBlYWNoIGNvbXBvbmVudCBvZiB0aGUgZGF0ZXRpbWUgdmFyaWFibGUgYGR0YCBmcm9tIGBkYXQxYCBkYXRhZnJhbWUsIGluY2x1ZGluZyBkYXkgb2YgdGhlIG1vbnRoLCBkYXkgb2YgdGhlIHllYXIsIGFuZCBkYXkgb2YgdGhlIHdlZWsuIERpc3BsYXkgbW9udGggYW5kIGRheSBvZiB0aGUgd2VlayBpbiB3b3JkcyBpbnN0ZWFkIG9mIG51bWJlcnMuDQoNCmBgYHtyfQ0KZGF0MiA8LSBkYXQxICU+JSANCiAgbXV0YXRlKHllYXIgPSB5ZWFyKGR0KSwNCiAgICAgICAgIG1vbnRoID0gbW9udGgoZHQsIGxhYmVsID0gVFJVRSksDQogICAgICAgICBkYXkgPSBkYXkoZHQpLA0KICAgICAgICAgaG91ciA9IGhvdXIoZHQpLA0KICAgICAgICAgbWludXRlID0gbWludXRlKGR0KSwNCiAgICAgICAgIHNlY29uZCA9IHNlY29uZChkdCksDQogICAgICAgICBkYXlfb2ZfdGhlX21vbnRoID0gbWRheShkdCksDQogICAgICAgICBkYXlfb2ZfdGhlX3llYXIgPSB5ZGF5KGR0KSwNCiAgICAgICAgIGRheV9vZl90aGVfd2VlayA9IHdkYXkoZHQsIGxhYmVsID0gVFJVRSkpDQpgYGANCg0KV2hhdCBpcyB0aGUgZnJlcXVlbmN5IGRpc3RyaWJ1dGlvbiBvZiB0aGUgcXVhcnRlcnMgb2YgdGhlc2UgZGF0ZXM/DQoNCmBgYHtyfQ0KZGF0MSAlPiUgDQogIG11dGF0ZShxID0gcXVhcnRlcihkdCwgd2l0aF95ZWFyID0gVFJVRSkpICU+JSANCiAgY291bnQocSkNCmBgYA0KDQojIFRpbWUgc3BhbnMNCg0KVGhyZWUgaW1wb3J0YW50IGNsYXNzZXMgdGhhdCByZXByZXNlbnQgdGltZSBzcGFuczoNCg0KLSBEdXJhdGlvbjogYW4gZXhhY3QgbnVtYmVyIG9mIHNlY29uZHMNCi0gUGVyaW9kOiBhbGxvd3MgY2FsY3VsYXRpb24gYnkgY2FsZW5kYXIgd2VlaywgbW9udGgsIGFuZCB5ZWFyIC0gdGhpcyB3YXkgb2YgY2FsY3VsYXRpb24gaXMgcHJvYmFibHkgbW9yZSBmYW1pbGlhciB0byB1cy4NCi0gSW50ZXJ2YWxzOiBtZWFzdXJlZCBpbiBzZWNvbmRzIGJ1dCB3aXRoIGEgc3RhcnRpbmcgZGF0ZQ0KDQpMZXQncyB0YWtlIGEgbG9vayBhdCBmdW5jdGlvbnMgdGhhdCB3b3JrIHdpdGggdGhlc2UgdGltZSBzcGFuIGNsYXNzZXMuDQoNCiMjIER1cmF0aW9uDQoNCklmIEpvaG4gU25vdyBpcyBhbGl2ZSB0b2RheSwgaG93IG9sZCB3b3VsZCBoZSBiZT8NCg0KYGBge3J9DQpqc19hZ2UgPC0gdG9kYXkoKSAtIHltZCgxODEzMDMxNSkNCmpzX2FnZQ0KY2xhc3MoanNfYWdlKQ0KYGBgDQoNCkR1cmF0aW9uIGlzIHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gdHdvIGRhdGVzIG9yIGRhdGUvdGltZSBvYmplY3RzLiBJbiBiYXNlIFIsIHN1YnN0cmFjdGlvbiBvZiB0aGUgdHdvIGRhdGVzIG9yIGRhdGUvdGltZSBvYmplY3RzIGNyZWF0ZXMgYSBgZGlmZnRpbWVgIG9iamVjdC4gSXRzIHVuaXQgY2FuIGJlIHNlY29uZHMsIG1pbnV0ZXMsIGhvdXJzLCBkYXlzLCBhbmQgd2Vla3MgKHJlYWQgdGhlIGhlbHAgZmlsZSBgP2RpZmZ0aW1lYCkuIEl0IGNhbiBiZSBjb25mdXNpbmcgdG8gd29yayB3aXRoLg0KDQpgYGB7cn0NCmFzLmRpZmZ0aW1lKHNlcShmcm9tID0gMTAsIHRvID0gNTAsIGJ5ID0gMTApLCB1bml0cyA9ICJzZWNzIikNCmFzLmRpZmZ0aW1lKHNlcShmcm9tID0gMTAsIHRvID0gNTAsIGJ5ID0gMTApLCB1bml0cyA9ICJob3VycyIpDQphcy5kaWZmdGltZShzZXEoZnJvbSA9IDEwLCB0byA9IDUwLCBieSA9IDEwKSwgdW5pdHMgPSAid2Vla3MiKQ0KYGBgDQoNCkluIGB7bHVicmlkYXRlfWAsIGEgZHVyYXRpb24gaXMgYWx3YXlzIHJlcHJlc2VudGVkIGluIHNlY29uZHMuDQoNCmBgYHtyfQ0KYXMuZHVyYXRpb24oanNfYWdlKQ0KYGBgDQoNCldlIGNhbiBjb25zdHJ1Y3QgZHVyYXRpb24gYmFzZWQgb24gbnVtYmVycyBpbiBzZWNvbmQsIG1pbnV0ZSwgaG91ciwgZGF5LCB3ZWVrIGFuZCB5ZWFyIHVzaW5nIGNvbnZlbmllbnQgZnVuY3Rpb25zIGZyb20gYGx1YnJpZGF0ZWAuIFRoZSBvdXRwdXQgb2YgdGhlc2UgZnVuY3Rpb25zIGlzIHRoZSBlcXVpdmFsZW50IG51bWJlciBvZiBzZWNvbmRzLg0KDQpgYGB7cn0NCmRzZWNvbmRzKDE1KQ0KZG1pbnV0ZXMoMTApDQpkaG91cnMoYygxMiwgMjQpKQ0KZGRheXMoMDo1KQ0KZHdlZWtzKDMpDQpkeWVhcnMoMSkNCmBgYA0KDQpOb3RlIHRoYXQgdGhlcmUgaXMgbm8gYGRtb250aHMoKWAuIFdoeSBpcyB0aGF0Pw0KDQpZb3UgY2FuIGFkZCBhbmQgbXVsdGlwbHkgZHVyYXRpb25zOg0KDQpgYGB7cn0NCjIgKiBkeWVhcnMoMikNCmR5ZWFycygxKSArIGR3ZWVrcyg0KSArIGRkYXlzKDcpDQpgYGANCg0KWW91IGNhbiBhZGQgYW5kIHN1YnRyYWN0IGR1cmF0aW9ucyB0byBhbmQgZnJvbSBkYXlzOg0KDQpgYGB7cn0NCnRvbW9ycm93IDwtIHRvZGF5KCkgKyBkZGF5cygxKQ0KbGFzdF95ZWFyIDwtIHRvZGF5KCkgLSBkeWVhcnMoMSkNCmBgYA0KDQojIyBQZXJpb2RzDQoNCkNhbGN1bGF0aW9uIHVzaW5nIGR1cmF0aW9ucyBtYXkgZ2V0IHlvdSBhbiB1bmV4cGVjdGVkIHJlc3VsdC4gVGhlIG51bWJlciBvZiBzZWNvbmRzIGluIGEgeWVhciBvciBhIG1vbnRoIGNhbiB2YXJ5IGJlY2F1c2Ugb2YgZGlmZmVyZW50IGRheXMgaW4gYSBtb250aCwgbGVhcCB5ZWFyLCBhbmQgZGF5bGlnaHQgc2F2aW5ncyB0aW1lLg0KDQpgYGB7cn0NCiMgQSBsZWFwIHllYXINCnltZCgiMjAxNi0wMS0wMSIpICsgZHllYXJzKDEpDQoNCiMgRGF5bGlnaHQgU2F2aW5ncyBUaW1lDQpvbmVfcG0gPC0geW1kX2htcygiMjAxNi0wMy0xMiAxMzowMDowMCIsIHR6ID0gIkFtZXJpY2EvTmV3X1lvcmsiKQ0Kb25lX3BtICsgZGRheXMoMSkNCmBgYA0KDQpUaGlzIGlzIHdoZXJlIHBlcmlvZCBjb21lcyBpbi4gSXQgYWxsb3dzIGFkZGluZyBvbmUgeWVhciB0byBKYW51YXJ5IDEsIDIwMjAgYW5kIGJlY29tZSBKYW51YXJ5IDEsIDIwMjEsIGluc3RlYWQgb2YgMzEgRGVjZW1iZXIgMjAyMCBiZWNhdXNlIG9mIHRoZSBsZWFwIHllYXIuIENvbXBhcmVkIHRvIGR1cmF0aW9ucywgcGVyaW9kcyBhcmUgbW9yZSBsaWtlbHkgdG8gZG8gd2hhdCB5b3UgZXhwZWN0Og0KDQpgYGB7cn0NCiMgQSBsZWFwIHllYXINCnltZCgiMjAxNi0wMS0wMSIpICsgZHllYXJzKDEpDQp5bWQoIjIwMTYtMDEtMDEiKSArIHllYXJzKDEpDQoNCiMgRGF5bGlnaHQgU2F2aW5ncyBUaW1lDQpvbmVfcG0NCm9uZV9wbSArIGRkYXlzKDEpDQpvbmVfcG0gKyBkYXlzKDEpDQpgYGANCg0KV2UgY2FuIGNvbnN0cnVjdCBwZXJpb2RzIGZyb20gbnVtYmVyczoNCg0KYGBge3J9DQpzZWNvbmRzKDE1KQ0KbWludXRlcygxMCkNCmhvdXJzKGMoMTIsIDI0KSkNCmRheXMoNykNCm1vbnRocygxOjYpDQp3ZWVrcygzKQ0KeWVhcnMoMSkNCmBgYA0KDQpZb3UgY2FuIGFsc28gYWRkIGFuZCBtdWx0aXBseSBwZXJpb2RzLg0KDQpgYGB7cn0NCjEwICogKG1vbnRocyg2KSArIGRheXMoMSkpDQpkYXlzKDUwKSArIGhvdXJzKDI1KSArIG1pbnV0ZXMoMikNCmBgYA0KDQpFeGVyY2lzZSAzOiBBIG5ldyBjb2x1bW4geWVhciBpcyBjcmVhdGVkIGluIGBkYXQxYCB1c2luZyByYW5kb20gbnVtYmVycy4gQ29udmVydCB0aGlzIGNvbHVtbiBpbnRvIGJvdGggZHVyYXRpb24gYW5kIHBlcmlvZCBhbmQgYWRkIHRoZW0gdG8gYGR0YCBjb2x1bW4uIENoZWNrIHdoZXRoZXIgYW5kIHRvIHdoYXQgZXh0ZW50IHRoZSByZXN1bHRzIGFyZSBkaWZmZXJlbnQgYW5kIHdoeT8NCg0KYGBge3J9DQpkYXQzIDwtIGRhdDENCmRhdDMkeWVhciA8LSBzYW1wbGUoLTIwOjIwLCBucm93KGRhdDMpLCByZXBsYWNlID0gVFJVRSkNCg0KZGF0MyA8LSBkYXQzICU+JSANCiAgbXV0YXRlKGQgPSBkeWVhcnMoeWVhciksDQogICAgICAgICBwID0geWVhcnMoeWVhciksDQogICAgICAgICBkdF9kdXJhdGlvbiA9IGR0ICsgZCwNCiAgICAgICAgIGR0X3BlcmlvZCA9IGR0ICsgcCwNCiAgICAgICAgIGRpZmYgPSBhcy5kdXJhdGlvbihkdF9kdXJhdGlvbiAtIGR0X3BlcmlvZCkpDQoNCmRhdDMNCmBgYA0KDQojIyBJbnRlcnZhbHMNCg0KYGR5ZWFycygxKSAvIGRkYXlzKDEpYCByZXR1cm5zIDM2NSBiZWNhdXNlIGR1cmF0aW9ucyBhcmUgYWx3YXlzIHJlcHJlc2VudGVkIGJ5IGEgbnVtYmVyIG9mIHNlY29uZHMsIGFuZCBhIGR1cmF0aW9uIG9mIGEgeWVhciBpcyBkZWZpbmVkIGFzIDM2NSBkYXlzIHdvcnRoIG9mIHNlY29uZHMuDQoNCkxldCdzIGRvIHRoZSBzYW1lIGNhbGN1bGF0aW9uIHVzaW5nIHBlcmlvZHMuDQoNCmBgYHtyfQ0KeWVhcnMoMSkgLyBkYXlzKDEpDQpgYGANCg0KQSBwZXJpb2QgcmVwcmVzZW50cyBjYWxlbmRhciB0aW1lIGFuZCBpdCByZXR1cm5zIDM2NS4yNSB3aXRoIGEgbWVzc2FnZSBzdGF0aW5nIHRoYXQgaXQncyBhbiBpbXByZWNpc2UgZXN0aW1hdGUuIFdoeSBpcyB0aGF0PyBUaGF0IGlzIGJlY2F1c2UgaXQgd291bGQgcmV0dXJuIDM2NiBpZiBpdCB3YXMgYSBsZWFwIHllYXIuIFNpbmNlIHdlIGRvIG5vdCBrbm93IHdoZW4gdGhhdCBwZXJpb2Qgc3RhcnRlZCwgd2UgY2Fubm90IGtub3cgdGhlIHBlcmlvZCBhY2N1cmF0ZWx5OyB3ZSBzaG91bGQgdXNlIGFuIGludGVydmFsIGluc3RlYWQgKGlmIHdlIGhhdmUgdGhlIHN0YXJ0IGRhdGVzKS4NCg0KYGludGVydmFsKClgIGZ1bmN0aW9uIGNyZWF0ZXMgaW50ZXJ2YWwgb2JqZWN0cy4gYCUtLSVgIGlzIHRoZSBzaG9ydGhhbmQgZm9yIHRoZSBmdW5jdGlvbi4gQW4gaW50ZXJ2YWwgb2JqZWN0IHByaW50cyB0aGUgc3RhcnQgYW5kIGVuZCBkYXRlcyByYXRoZXIgdGhhbiBzZWNvbmRzLg0KDQpgYGB7cn0NCm15X2ludDEgPC0geW1kX2htcygiMjAxNi0wMy0xMiAxMzowMDowMCIpICUtLSUgeW1kX2htcygiMjAxNy0wNC0xMiAxMzowMDowMCIpDQpteV9pbnQyIDwtIHltZF9obXMoIjIwMTYtMDgtMDEgMTM6MDA6MDAiKSAlLS0lIHltZF9obXMoIjIwMTctMDgtMTIgMTM6MDA6MDAiKQ0KbXlfaW50MQ0KbXlfaW50Mg0KYGBgDQoNCllvdSBjYW4gZXh0cmFjdCBzdGFydCBhbmQgZW5kIGRhdGVzLg0KDQpgYGB7cn0NCmludF9zdGFydChteV9pbnQxKQ0KaW50X2VuZChteV9pbnQxKQ0KYGBgDQoNCllvdSBjYW4gY2hhbmdlIHRoZSBzdGFydCBvciBlbmQgZGF0ZXMgaW4gcGxhY2UuDQoNCmBgYHtyfQ0KaW50X3N0YXJ0KG15X2ludDEpIDwtIHltZF9obXMoIjIwMTYtMDEtMDEgMTM6MDA6MDAiKQ0KaW50X2VuZChteV9pbnQxKSA8LSB5bWRfaG1zKCIyMDE3LTAxLTAxIDEzOjAwOjAwIikNCm15X2ludDENCmBgYA0KDQpZb3UgY2FuIHRlc3Qgd2hldGhlciBhIGRhdGUgZmFsbHMgd2l0aGluIGFuIGludGVydmFsLg0KDQpgYGB7cn0NCnltZF9obXMoIjIwMTYtMDUtMDEgMTM6MDA6MDAiKSAld2l0aGluJSBteV9pbnQxDQp5bWRfaG1zKCIxOTk5LTA1LTAxIDEzOjAwOjAwIikgJXdpdGhpbiUgbXlfaW50MQ0KYGBgDQoNCllvdSBjYW4gYWxzbyB0ZXN0IHdoZXRoZXIgdHdvIGludGVydmFscyBvdmVybGFwcy4NCg0KYGBge3J9DQppbnRfb3ZlcmxhcHMobXlfaW50MSwgbXlfaW50MikNCmBgYA0KDQojIFRpbWUgem9uZXMNCg0KU3lzdGVtIHRpbWUgem9uZQ0KDQpDb21wbGV0ZSBsaXN0IG9mIHRpbWV6b25lIG5hbWVzDQoNCkRlZmF1bHQgdGltZSB6b25lOiBVVEMgKENvb3JkaW5hdGVkIFVuaXZlcnNhbCBUaW1lKSwgZG9lcyBub3QgaGF2ZSBEU1QNCg0KDQpDaGFuZ2UgdGltZSB6b25lIGluIHR3byB3YXlzOg0KDQoxLiBLZWVwIHRoZSBpbnN0YW50IGluIHRpbWUgdGhlIHNhbWUsIGFuZCBjaGFuZ2UgaG93IGl0J3MgZGlzcGxheWVkLg0KDQpgYGB7cn0NCndpdGhfdHooKQ0KYGBgDQoNCg0KMi4gQ2hhbmdlIHRoZSB1bmRlcmx5aW5nIGluc3RhbnQgaW4gdGltZS4gVXNlIHRoaXMgd2hlbiB0aGUgaW5zdGFudCBpcyBsYWJlbGxlZCB3aXRoIGFuIGluY29ycmVjdCB0aW1lem9uZS4NCg0KYGBge3J9DQpmb3JjZV90eigpDQpgYGANCg0KDQpgYGB7cn0NCmZiIDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAiZmJfbmV3LmNzdiIpKQ0KdHcgPC0gcmVhZF9jc3YoaGVyZSgiZGF0YSIsICJ0d19uZXcuY3N2IikpDQpgYGANCg0KV2hvIGFyZSB0aGUgdG9wIDEwIGluZmx1ZW5jZXJzIHdobyBwb3N0ZWQgdGhlIGhpZ2hlc3QgbnVtYmVyIG9mIHR3ZWV0cz8NCg0KYGBge3J9DQp0b3BfMTAgPC0gdHdlZXQgJT4lIA0KICBjb3VudChpbmZsdWVuY2VyLCBzb3J0ID0gVFJVRSkgJT4lIA0KICBzbGljZSgxOjEwKSAlPiUgDQogIHB1bGwoaW5mbHVlbmNlcikNCmBgYA0KDQpQbG90IHRoZWlyIHRvdGFsIG51bWJlciBvZiB0d2VldHMgYWdhaW5zdCBhdmVyYWdlIEFWRSB2YWx1ZSB1c2luZyBhIHNjYXR0ZXIgcGxvdC4NCg0KYGBge3J9DQp0d2VldCAlPiUgDQogIGZpbHRlcihpbmZsdWVuY2VyICVpbiUgdG9wXzEwKSAlPiUgDQogIGdyb3VwX2J5KGluZmx1ZW5jZXIpICU+JSANCiAgc3VtbWFyaXNlKGF2ZSA9IG1lYW4oYXZlLCBuYS5ybSA9IFRSVUUpLA0KICAgICAgICAgICAgbnVtX3R3ZWV0cyA9IG4oKSkgJT4lIA0KICBnZ3Bsb3QoYWVzKHggPSBudW1fdHdlZXRzLCB5ID0gYXZlKSkgKw0KICBnZW9tX3BvaW50KCkgKw0KICBnZW9tX3RleHQoYWVzKGxhYmVsID0gaW5mbHVlbmNlciksIGhqdXN0ID0gMSwgdmp1c3QgPSAtMC41LCBzaXplID0gMywgY2hlY2tfb3ZlcmxhcCA9IFRSVUUpICsNCiAgbGFicyh0aXRsZSA9ICJBVkUgYW5kIG51bWJlciBvZiB0d2VldHMgb2YgaW5mbHVlbmNlcnMiLCB4ID0gIk51bWJlciBvZiB0d2VldHMiLCB5ID0gIk1lYW4gdmFsdWUgb2YgQVZFIikgKw0KICBzY2FsZV94X2NvbnRpbnVvdXMobGltaXRzID0gYygwLCAxNTAwKSwgYnJlYWtzID0gc2VxKDAsIDE1MDAsIDMwMCkpICsNCiAgdGhlbWVfY2xhc3NpYygpDQpgYGANCg0KTmF0dXJlIG9mIHNlbnRpbWVudHMgb2YgdGhlIHRvcCAxMCBpbmZsdWVuY2VyJ3MgdHdlZXRzIGNsYXNzaWZpZWQgYnkgYWxnb3JpdGhtLg0KDQpgYGB7cn0NCnR3ZWV0ICU+JSANCiAgZmlsdGVyKGluZmx1ZW5jZXIgJWluJSB0b3BfMTApICU+JSANCiAgbXV0YXRlKGluZmx1ZW5jZXIgPSBmYWN0b3IoaW5mbHVlbmNlciksDQogICAgICAgICBzZW50aW1lbnQgPSBmYWN0b3Ioc2VudGltZW50LCBsZXZlbHMgPSBjKCJQb3NpdGl2ZSIsICJOZWdhdGl2ZSIsICJOZXV0cmFsIiwgIk5vdCBSYXRlZCIpKSkgJT4lIA0KICBnZ3Bsb3QoYWVzKHggPSBmY3RfaW5mcmVxKGluZmx1ZW5jZXIpLCBmaWxsID0gZmN0X3JldihzZW50aW1lbnQpKSkgKw0KICBnZW9tX2Jhcihwb3NpdGlvbiA9ICJmaWxsIikgKw0KICBzY2FsZV9maWxsX3ZpcmlkaXMoZGlzY3JldGUgPSBUUlVFLCBvcHRpb24gPSAiRCIsIGFscGhhID0gMC44KSArDQogIHNjYWxlX3lfY29udGludW91cyhsYWJlbHMgPSBzY2FsZXM6OnBlcmNlbnRfZm9ybWF0KCkpICsNCiAgbGFicyh4ID0gIkluZmx1ZW5jZXIiLCB5ID0gIiIsIGZpbGwgPSAiU2VudGltZW50IG9mIHR3ZWV0cyIpICsNCiAgdGhlbWVfY2xhc3NpYygpICsNCiAgdGhlbWUoYXhpcy50ZXh0LnggPSBlbGVtZW50X3RleHQoYW5nbGUgPSA5MCwgaGp1c3QgPSAxLCB2anVzdCA9IDAuMyksDQogICAgICAgIGF4aXMudGlja3MgPSBlbGVtZW50X2JsYW5rKCkpDQpgYGANCg0KDQpgYGB7cn0NCnR3ZWV0ICU+JSANCiAgZ3JvdXBfYnkobGFuZ3VhZ2UpICU+JSANCiAgc3VtbWFyaXNlKG4gPSBuKCkpICU+JSANCiAgYXJyYW5nZShkZXNjKG4pKSAlPiUgDQogIHNsaWNlKDE6MTApICU+JSANCiAgbXV0YXRlKHBvcyA9IGZhY3RvcihsYW5ndWFnZSkpICU+JSANCiAgZ2dwbG90KGFlcyh4ID0gZmN0X3Jlb3JkZXIocG9zLCBuKSwgeSA9IG4pKSArDQogIGdlb21fYmFyKHN0YXQgPSAiaWRlbnRpdHkiKSArDQogIGNvb3JkX2ZsaXAoKSArDQogIHNjYWxlX3lfY29udGludW91cyhsaW1pdHMgID0gYygwLCA4MDAwMCkpICsNCiAgbGFicyh4ID0gIkxhbmd1YWdlIiwgeSA9ICJOdW1iZXIgb2YgdHdlZXRzIikNCmBgYA0KICANCmBgYHtyfQ0KZmIgJT4lIA0KICBncm91cF9ieShsYW5ndWFnZSkgJT4lIA0KICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIA0KICBhcnJhbmdlKGRlc2MobikpICU+JSANCiAgc2xpY2UoMToxMCkgJT4lIA0KICBtdXRhdGUocG9zID0gZmFjdG9yKGxhbmd1YWdlKSkgJT4lIA0KICBnZ3Bsb3QoYWVzKHggPSBmY3RfcmVvcmRlcihwb3MsIG4pLCB5ID0gbikpICsNCiAgZ2VvbV9iYXIoc3RhdCA9ICJpZGVudGl0eSIpICsNCiAgY29vcmRfZmxpcCgpICsNCiAgc2NhbGVfeV9jb250aW51b3VzKGxpbWl0cyAgPSBjKDAsIDgwMDAwKSkgKw0KICBsYWJzKHggPSAiTGFuZ3VhZ2Ugb2YgcG9zdHMiLCB5ID0gIk51bWJlciBvZiBmYWNlYm9vayBwb3N0cyIpDQpgYGANCg0KYGBge3J9DQp0d2VldDEgPC0gdHdlZXQgJT4lIA0KICBtdXRhdGUoZGF0ZXRpbWUgPSBtYWtlX2RhdGV0aW1lKHllYXIsIG1vbnRoLCBkYXksIHRpbWUgJS8lIDEwMCwgdGltZSAlJSAxMDApKQ0KDQpmYjEgPC0gZmIgJT4lIA0KICBtdXRhdGUoZGF0ZXRpbWUgPSBwYXJzZV9kYXRlX3RpbWUoZGF0ZSwgInltZEhNUyIpKQ0KYGBgDQoNCmBgYHtyfQ0Kc29jaWFsX21lZGlhIDwtIGJpbmRfcm93cygNCiAgVHdpdHRlciA9IHR3ZWV0MSAlPiUgc2VsZWN0KGRhdGV0aW1lKSwNCiAgRmFjZWJvb2sgPSBmYjEgJT4lIHNlbGVjdChkYXRldGltZSksDQogIC5pZCA9ICJzb3VyY2UiDQopDQoNCnNvY2lhbF9tZWRpYSAlPiUgDQogIGdncGxvdChhZXMoeCA9IGRhdGV0aW1lLCBjb2wgPSBzb3VyY2UpKSArDQogIGdlb21fZnJlcXBvbHkoYmlud2lkdGggPSA2MCo2MCoyNCkNCg0KdHcxZGF0ZSA8LSByYW5nZSh0dzEkZGF0ZXRpbWUpDQoodHcxZGF0ZVsxXSAlLS0lIHR3MWRhdGVbMl0pICUvJSBkYXlzKDEpDQoNCnRlc3QgPC0gc29jaWFsX21lZGlhICU+JSANCiAgbXV0YXRlKGR0ID0gZGF0ZShkYXRldGltZSkpICU+JSANCiAgY291bnQoc291cmNlLCBkdCkgJT4lIA0KICBwaXZvdF93aWRlcihuYW1lc19mcm9tID0gc291cmNlLA0KICAgICAgICAgICAgICB2YWx1ZXNfZnJvbSA9IG4pDQoNCmdncGxvdCh0ZXN0LCBhZXMoeCA9IGZiLCB5ID0gdHcpKSArDQogIGdlb21fcG9pbnQoKQ0KYGBgDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGVzIGFuZCB0aW1lcyINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KGx1YnJpZGF0ZSkNCmxpYnJhcnkoaGVyZSkNCmBgYA0KDQojIEZ1bmN0aW9ucyBmb3Igc3lzdGVtIGRhdGUgYW5kIHRpbWUNCg0KYGBge3J9DQp0IDwtIHRvZGF5KCkNCnQNCmNsYXNzKHQpDQoNCm4gPC0gbm93KCkNCm4NCmNsYXNzKG4pDQpgYGANCg0KIyBDcmVhdGUgZGF0ZS90aW1lIGZyb20gb3RoZXIgb2JqZWN0cw0KDQpUaHJlZSB3YXlzOg0KDQotIEZyb20gYSBzdHJpbmcNCi0gRnJvbSBpbmRpdmlkdWFsIGRhdGUtdGltZSBjb21wb25lbnRzDQotIEZyb20gYW4gZXhpc3RpbmcgZGF0ZS90aW1lIG9iamVjdA0KDQojIyBGcm9tIGEgc3RyaW5nDQoNCmBgYHtyfQ0KeW1kKCIyMDIwLTAxLTI4IikNCmRteSgiMjhqYW4yMDIwIikNCm1keSgiSmFudWFyeSAyOHRoLCAyMDIwIikNCmBgYA0KDQpZb3UgY2FuIGFsc28gY29udmVydCBkYXRlcyBmcm9tIHVucXVvdGVkIG51bWJlcnMuDQoNCmBgYHtyfQ0KeW1kKDIwMjAwMTI4KQ0KYGBgDQoNCkNvbnZlcnRpbmcgZGF0ZSBhbmQgdGltZS4gTm90ZSB0aGUgZGVmYXVsdCB0aW1lem9uZS4NCg0KYGBge3J9DQp5bWRfaG1zKCIyMDEwLTAxLTI4IDIzOjU5OjU5IikNCmRteV9obXMoIjI4amFuMjAyMCAyMzo1OTo1OSIpDQpkbXlfaG1zKCIyOGphbjIwMjAgMjMtNTktNTkiKQ0KZG15X2htKCIyOGphbjIwMjAgMjM6MjAiKQ0KZG15X2goIjI4amFuMjAyMCAyMyIpDQpgYGANCg0KIyMgRnJvbSBpbmRpdmlkdWFsIGNvbXBvbmVudHMNCg0KYGBge3J9DQptYWtlX2RhdGV0aW1lKA0KICB5ZWFyID0gMjAyMCwNCiAgbW9udGggPSAxLA0KICBkYXkgPSAyOCwNCiAgaG91ciA9IDE0LA0KICBtaW4gPSA0MCwNCiAgc2VjID0gMzANCikNCmBgYA0KDQpFeGVyY2lzZSAxOiBBIGRhdGFmcmFtZSBgZGF0YCBpcyBjb25zdHJ1Y3RlZCwgaW5jbHVkaW5nIGNvbXBvbmVudHMgb2YgZGF0ZS90aW1lLiBVc2UgdGhlc2UgY29tcG9uZW50cyB0byBjcmVhdGUgYSBuZXcgZGF0ZS90aW1lIHZhcmlhYmxlDQoNCmBgYHtyfQ0KZGF0IDwtIHRpYmJsZSgNCiAgeWVhciA9IDIwMjAsDQogIG1vbnRoID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDEyKSksDQogIGRheSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSAyOCkpLA0KICBob3VyID0gcm91bmQocnVuaWYoMjAsIG1pbiA9IDEsIG1heCA9IDI0KSksDQogIG1pbnV0ZSA9IHJvdW5kKHJ1bmlmKDIwLCBtaW4gPSAxLCBtYXggPSA1OSkpLA0KICBzZWNvbmQgPSByb3VuZChydW5pZigyMCwgbWluID0gMSwgbWF4ID0gNTkpKQ0KKQ0KYGBgDQoNCmBgYHtyfQ0KZGF0MSA8LSBkYXQgJT4lIA0KICBtdXRhdGUoZHQgPSBtYWtlX2RhdGV0aW1lKHllYXIsIG1vbnRoLCBkYXksIGhvdXIsIG1pbnV0ZSwgc2Vjb25kKSkNCmBgYA0KDQojIEV4dHJhY3RpbmcgY29tcG9uZW50cw0KDQpZb3UgY2FuIGV4dHJhY3QgZWFjaCBjb21wb25lbnQgb2YgYSBkYXRlL3RpbWUgb2JqZWN0Lg0KDQpgYGB7cn0NCmEgPC0gIjIwMjAtMDUtMDQgMDI6NTU6NTQiDQphX2R0IDwtIHltZF9obXMoYSkNCg0KeWVhcihhX2R0KQ0KZGF5KGFfZHQpDQpob3VyKGFfZHQpDQpgYGANCg0KWW91IGNhbiBhbHNvIGV4dHJhY3QgdGhlIGRheSBvZiB0aGUgd2VlaywgbW9udGgsIG9yIHllYXIgZm9yIGEgZ2l2ZW4gZGF0ZS90aW1lLg0KDQpgYGB7cn0NCm1kYXkoYV9kdCkgIyBkYXkgb2YgdGhlIG1vbnRoDQp5ZGF5KGFfZHQpICMgZGF5IG9mIHRoZSB5ZWFyDQp3ZGF5KGFfZHQpICMgZGF5IG9mIHRoZSB3ZWVrDQpgYGANCg0KSWYgeW91IHdhbnQgdG8ga25vdyB3aGljaCBxdWFydGVyIG9yIHNlbWVzdGVyIChoYWxmIGEgeWVhcikgaXMgaW4sIHlvdSBjYW4gZG8gdGhhdCB0b28uDQoNCmBgYHtyfQ0KcXVhcnRlcihhX2R0KQ0KcXVhcnRlcihhX2R0LCB3aXRoX3llYXIgPSBUUlVFKQ0KDQpzZW1lc3RlcihhX2R0KQ0Kc2VtZXN0ZXIoYV9kdCwgd2l0aF95ZWFyID0gVFJVRSkNCmBgYA0KDQpFeGVyY2lzZSAyOiBFeHRyYWN0IGVhY2ggY29tcG9uZW50IG9mIHRoZSBkYXRldGltZSB2YXJpYWJsZSBgZHRgIGZyb20gYGRhdDFgIGRhdGFmcmFtZSwgaW5jbHVkaW5nIGRheSBvZiB0aGUgbW9udGgsIGRheSBvZiB0aGUgeWVhciwgYW5kIGRheSBvZiB0aGUgd2Vlay4gRGlzcGxheSBtb250aCBhbmQgZGF5IG9mIHRoZSB3ZWVrIGluIHdvcmRzIGluc3RlYWQgb2YgbnVtYmVycy4NCg0KYGBge3J9DQpkYXQyIDwtICBkYXQxICU+JSANCiAgc2VsZWN0KGR0KQ0KYGBgDQoNCg0KYGBge3J9DQpkYXQyICU+JSANCiAgbXV0YXRlKHllYXIgPSB5ZWFyKGR0KSwNCiAgICAgICAgIG1vbnRoID0gbW9udGgoZHQsIGxhYmVsID0gVFJVRSksDQogICAgICAgICBkYXkgPSBkYXkoZHQpLA0KICAgICAgICAgaG91ciA9IGhvdXIoZHQpLA0KICAgICAgICAgbWludXRlID0gbWludXRlKGR0KSwNCiAgICAgICAgIHNlY29uZCA9IHNlY29uZChkdCksDQogICAgICAgICBkYXlfb2ZfdGhlX21vbnRoID0gbWRheShkdCksDQogICAgICAgICBkYXlfb2ZfdGhlX3llYXIgPSB5ZGF5KGR0KSwNCiAgICAgICAgIGRheV9vZl90aGVfd2VlayA9IHdkYXkoZHQsIGxhYmVsID0gVFJVRSkpDQpgYGANCg0KV2hhdCBpcyB0aGUgZnJlcXVlbmN5IGRpc3RyaWJ1dGlvbiBvZiB0aGUgcXVhcnRlcnMgb2YgdGhlc2UgZGF0ZXM/DQoNCmBgYHtyfQ0KZGF0MSAlPiUgDQogIG11dGF0ZShxID0gcXVhcnRlcihkdCwgd2l0aF95ZWFyID0gVFJVRSkpICU+JSANCiAgY291bnQocSkNCmBgYA0KDQojIFRpbWUgc3BhbnMNCg0KVGhyZWUgaW1wb3J0YW50IGNsYXNzZXMgdGhhdCByZXByZXNlbnQgdGltZSBzcGFuczoNCg0KLSBEdXJhdGlvbjogYW4gZXhhY3QgbnVtYmVyIG9mIHNlY29uZHMNCi0gUGVyaW9kOiBhbGxvd3MgY2FsY3VsYXRpb24gYnkgY2FsZW5kYXIgd2VlaywgbW9udGgsIGFuZCB5ZWFyIC0gdGhpcyB3YXkgb2YgY2FsY3VsYXRpb24gaXMgcHJvYmFibHkgbW9yZSBmYW1pbGlhciB0byB1cy4NCi0gSW50ZXJ2YWxzOiBtZWFzdXJlZCBpbiBzZWNvbmRzIGJ1dCB3aXRoIGEgc3RhcnRpbmcgZGF0ZQ0KDQpMZXQncyB0YWtlIGEgbG9vayBhdCBmdW5jdGlvbnMgdGhhdCB3b3JrIHdpdGggdGhlc2UgdGltZSBzcGFuIGNsYXNzZXMuDQoNCiMjIER1cmF0aW9uDQoNCklmIEpvaG4gU25vdyBpcyBhbGl2ZSB0b2RheSwgaG93IG9sZCB3b3VsZCBoZSBiZT8NCg0KYGBge3J9DQpqc19hZ2UgPC0gdG9kYXkoKSAtIHltZCgxODEzMDMxNSkNCmpzX2FnZQ0KY2xhc3MoanNfYWdlKQ0KYGBgDQoNCkR1cmF0aW9uIGlzIHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gdHdvIGRhdGVzIG9yIGRhdGUvdGltZSBvYmplY3RzLiBJbiBiYXNlIFIsIHN1YnN0cmFjdGlvbiBvZiB0aGUgdHdvIGRhdGVzIG9yIGRhdGUvdGltZSBvYmplY3RzIGNyZWF0ZXMgYSBgZGlmZnRpbWVgIG9iamVjdC4gSXRzIHVuaXQgY2FuIGJlIHNlY29uZHMsIG1pbnV0ZXMsIGhvdXJzLCBkYXlzLCBhbmQgd2Vla3MgKHJlYWQgdGhlIGhlbHAgZmlsZSBgP2RpZmZ0aW1lYCkuIEl0IGNhbiBiZSBjb25mdXNpbmcgdG8gd29yayB3aXRoLg0KDQpgYGB7cn0NCmFzLmRpZmZ0aW1lKHNlcShmcm9tID0gMTAsIHRvID0gNTAsIGJ5ID0gMTApLCB1bml0cyA9ICJzZWNzIikNCmFzLmRpZmZ0aW1lKHNlcShmcm9tID0gMTAsIHRvID0gNTAsIGJ5ID0gMTApLCB1bml0cyA9ICJob3VycyIpDQphcy5kaWZmdGltZShzZXEoZnJvbSA9IDEwLCB0byA9IDUwLCBieSA9IDEwKSwgdW5pdHMgPSAid2Vla3MiKQ0KYGBgDQoNCkluIGB7bHVicmlkYXRlfWAsIGEgZHVyYXRpb24gaXMgYWx3YXlzIHJlcHJlc2VudGVkIGluIHNlY29uZHMuDQoNCmBgYHtyfQ0KYXMuZHVyYXRpb24oanNfYWdlKQ0KYGBgDQoNCldlIGNhbiBjb25zdHJ1Y3QgZHVyYXRpb24gYmFzZWQgb24gbnVtYmVycyBpbiBzZWNvbmQsIG1pbnV0ZSwgaG91ciwgZGF5LCB3ZWVrIGFuZCB5ZWFyIHVzaW5nIGNvbnZlbmllbnQgZnVuY3Rpb25zIGZyb20gYGx1YnJpZGF0ZWAuIFRoZSBvdXRwdXQgb2YgdGhlc2UgZnVuY3Rpb25zIGlzIHRoZSBlcXVpdmFsZW50IG51bWJlciBvZiBzZWNvbmRzLg0KDQpgYGB7cn0NCmRzZWNvbmRzKDE1KQ0KZG1pbnV0ZXMoMTApDQpkaG91cnMoYygxMiwgMjQpKQ0KZGRheXMoMDo1KQ0KZHdlZWtzKDMpDQpkeWVhcnMoMSkNCmBgYA0KDQpOb3RlIHRoYXQgdGhlcmUgaXMgbm8gYGRtb250aHMoKWAuIFdoeSBpcyB0aGF0Pw0KDQpZb3UgY2FuIGFkZCBhbmQgbXVsdGlwbHkgZHVyYXRpb25zOg0KDQpgYGB7cn0NCjIgKiBkeWVhcnMoMikNCmR5ZWFycygxKSArIGR3ZWVrcyg0KSArIGRkYXlzKDcpDQpgYGANCg0KWW91IGNhbiBhZGQgYW5kIHN1YnRyYWN0IGR1cmF0aW9ucyB0byBhbmQgZnJvbSBkYXlzOg0KDQpgYGB7cn0NCnRvbW9ycm93IDwtIHRvZGF5KCkgKyBkZGF5cygxKQ0KbGFzdF95ZWFyIDwtIHRvZGF5KCkgLSBkeWVhcnMoMSkNCmBgYA0KDQojIyBQZXJpb2RzDQoNCkNhbGN1bGF0aW9uIHVzaW5nIGR1cmF0aW9ucyBtYXkgZ2V0IHlvdSBhbiB1bmV4cGVjdGVkIHJlc3VsdC4gVGhlIG51bWJlciBvZiBzZWNvbmRzIGluIGEgeWVhciBvciBhIG1vbnRoIGNhbiB2YXJ5IGJlY2F1c2Ugb2YgZGlmZmVyZW50IGRheXMgaW4gYSBtb250aCwgbGVhcCB5ZWFyLCBhbmQgZGF5bGlnaHQgc2F2aW5ncyB0aW1lLg0KDQpgYGB7cn0NCiMgQSBsZWFwIHllYXINCnltZCgiMjAxNi0wMS0wMSIpICsgZHllYXJzKDEpDQoNCiMgRGF5bGlnaHQgU2F2aW5ncyBUaW1lDQpvbmVfcG0gPC0geW1kX2htcygiMjAxNi0wMy0xMiAxMzowMDowMCIsIHR6ID0gIkFtZXJpY2EvTmV3X1lvcmsiKQ0Kb25lX3BtICsgZGRheXMoMSkNCmBgYA0KDQpUaGlzIGlzIHdoZXJlIHBlcmlvZCBjb21lcyBpbi4gSXQgYWxsb3dzIGFkZGluZyBvbmUgeWVhciB0byBKYW51YXJ5IDEsIDIwMjAgYW5kIGJlY29tZSBKYW51YXJ5IDEsIDIwMjEsIGluc3RlYWQgb2YgMzEgRGVjZW1iZXIgMjAyMCBiZWNhdXNlIG9mIHRoZSBsZWFwIHllYXIuIENvbXBhcmVkIHRvIGR1cmF0aW9ucywgcGVyaW9kcyBhcmUgbW9yZSBsaWtlbHkgdG8gZG8gd2hhdCB5b3UgZXhwZWN0Og0KDQpgYGB7cn0NCiMgQSBsZWFwIHllYXINCnltZCgiMjAxNi0wMS0wMSIpICsgZHllYXJzKDEpDQp5bWQoIjIwMTYtMDEtMDEiKSArIHllYXJzKDEpDQoNCiMgRGF5bGlnaHQgU2F2aW5ncyBUaW1lDQpvbmVfcG0NCm9uZV9wbSArIGRkYXlzKDEpDQpvbmVfcG0gKyBkYXlzKDEpDQpgYGANCg0KV2UgY2FuIGNvbnN0cnVjdCBwZXJpb2RzIGZyb20gbnVtYmVyczoNCg0KYGBge3J9DQpzZWNvbmRzKDE1KQ0KbWludXRlcygxMCkNCmhvdXJzKGMoMTIsIDI0KSkNCmRheXMoNykNCm1vbnRocygxOjYpDQp3ZWVrcygzKQ0KeWVhcnMoMSkNCmBgYA0KDQpZb3UgY2FuIGFsc28gYWRkIGFuZCBtdWx0aXBseSBwZXJpb2RzLg0KDQpgYGB7cn0NCjEwICogKG1vbnRocyg2KSArIGRheXMoMSkpDQpkYXlzKDUwKSArIGhvdXJzKDI1KSArIG1pbnV0ZXMoMikNCmBgYA0KDQpFeGVyY2lzZSAzOiBBIG5ldyBjb2x1bW4geWVhciBpcyBjcmVhdGVkIGluIGBkYXQxYCB1c2luZyByYW5kb20gbnVtYmVycy4gQ29udmVydCB0aGlzIGNvbHVtbiBpbnRvIGJvdGggZHVyYXRpb24gYW5kIHBlcmlvZCBhbmQgYWRkIHRoZW0gdG8gYGR0YCBjb2x1bW4uIENoZWNrIHdoZXRoZXIgYW5kIHRvIHdoYXQgZXh0ZW50IHRoZSByZXN1bHRzIGFyZSBkaWZmZXJlbnQgYW5kIHdoeT8NCg0KYGBge3J9DQpkYXQzIDwtIGRhdDENCmRhdDMkeWVhciA8LSBzYW1wbGUoLTIwOjIwLCBucm93KGRhdDMpLCByZXBsYWNlID0gVFJVRSkNCg0KZGF0MyA8LSBkYXQzICU+JSANCiAgbXV0YXRlKGQgPSBkeWVhcnMoeWVhciksDQogICAgICAgICBwID0geWVhcnMoeWVhciksDQogICAgICAgICBkdF9kdXJhdGlvbiA9IGR0ICsgZCwNCiAgICAgICAgIGR0X3BlcmlvZCA9IGR0ICsgcCwNCiAgICAgICAgIGRpZmYgPSBhcy5kdXJhdGlvbihkdF9kdXJhdGlvbiAtIGR0X3BlcmlvZCkpDQoNCmRhdDMNCmBgYA0KDQojIyBJbnRlcnZhbHMNCg0KYGR5ZWFycygxKSAvIGRkYXlzKDEpYCByZXR1cm5zIDM2NSBiZWNhdXNlIGR1cmF0aW9ucyBhcmUgYWx3YXlzIHJlcHJlc2VudGVkIGJ5IGV4YWN0IG51bWJlciBvZiBzZWNvbmRzLCBhbmQgYSBkdXJhdGlvbiBvZiBhIHllYXIgaXMgZGVmaW5lZCBhcyAzNjUgZGF5cyB3b3J0aCBvZiBzZWNvbmRzLg0KDQpMZXQncyBkbyB0aGUgc2FtZSBjYWxjdWxhdGlvbiB1c2luZyBwZXJpb2RzLg0KDQpgYGB7cn0NCnllYXJzKDEpIC8gZGF5cygxKQ0KYGBgDQoNCkEgcGVyaW9kIHJlcHJlc2VudHMgY2FsZW5kYXIgdGltZSBhbmQgaXQgcmV0dXJucyAzNjUuMjUgd2l0aCBhIG1lc3NhZ2Ugc3RhdGluZyB0aGF0IGl0J3MgYW4gaW1wcmVjaXNlIGVzdGltYXRlLiBXaHkgaXMgdGhhdD8gVGhhdCBpcyBiZWNhdXNlIGl0IHdvdWxkIHJldHVybiAzNjYgaWYgaXQgd2FzIGEgbGVhcCB5ZWFyLiBTaW5jZSB3ZSBkbyBub3Qga25vdyB0aGUgZGF0ZSB0aGF0IHBlcmlvZCBzdGFydGVkLCB3ZSBjYW5ub3Qga25vdyB0aGUgcGVyaW9kIGFjY3VyYXRlbHk7IHdlIHNob3VsZCB1c2UgYW4gaW50ZXJ2YWwgaW5zdGVhZCAoaWYgd2UgaGF2ZSBpbmZvcm1hdGlvbiBvbiB0aGUgc3RhcnQgZGF0ZXMpLg0KDQpgaW50ZXJ2YWwoKWAgZnVuY3Rpb24gY3JlYXRlcyBpbnRlcnZhbCBvYmplY3RzLiBgJS0tJWAgaXMgdGhlIHNob3J0aGFuZCBmb3IgdGhlIGZ1bmN0aW9uLiBBbiBpbnRlcnZhbCBvYmplY3QgcHJpbnRzIHRoZSBzdGFydCBhbmQgZW5kIGRhdGVzIHJhdGhlciB0aGFuIHNlY29uZHMuDQoNCmBgYHtyfQ0KbXlfaW50MSA8LSB5bWRfaG1zKCIyMDE2LTAzLTEyIDEzOjAwOjAwIikgJS0tJSB5bWRfaG1zKCIyMDE3LTA0LTEyIDEzOjAwOjAwIikNCm15X2ludDIgPC0geW1kX2htcygiMjAxNi0wOC0wMSAxMzowMDowMCIpICUtLSUgeW1kX2htcygiMjAxNy0wOC0xMiAxMzowMDowMCIpDQpteV9pbnQxDQpteV9pbnQyDQpgYGANCg0KWW91IGNhbiBleHRyYWN0IHN0YXJ0IGFuZCBlbmQgZGF0ZXMuDQoNCmBgYHtyfQ0KaW50X3N0YXJ0KG15X2ludDEpDQppbnRfZW5kKG15X2ludDEpDQpgYGANCg0KWW91IGNhbiBjaGFuZ2UgdGhlIHN0YXJ0IG9yIGVuZCBkYXRlcyBpbiBwbGFjZS4NCg0KYGBge3J9DQppbnRfc3RhcnQobXlfaW50MSkgPC0geW1kX2htcygiMjAxNi0wMS0wMSAxMzowMDowMCIpDQppbnRfZW5kKG15X2ludDEpIDwtIHltZF9obXMoIjIwMTctMDEtMDEgMTM6MDA6MDAiKQ0KbXlfaW50MQ0KYGBgDQoNCllvdSBjYW4gdGVzdCB3aGV0aGVyIGEgZGF0ZSBmYWxscyB3aXRoaW4gYW4gaW50ZXJ2YWwuDQoNCmBgYHtyfQ0KeW1kX2htcygiMjAxNi0wNS0wMSAxMzowMDowMCIpICV3aXRoaW4lIG15X2ludDENCnltZF9obXMoIjE5OTktMDUtMDEgMTM6MDA6MDAiKSAld2l0aGluJSBteV9pbnQxDQpgYGANCg0KWW91IGNhbiBhbHNvIHRlc3Qgd2hldGhlciB0d28gaW50ZXJ2YWxzIG92ZXJsYXBzLg0KDQpgYGB7cn0NCmludF9vdmVybGFwcyhteV9pbnQxLCBteV9pbnQyKQ0KYGBgDQoNCiMgVGltZSB6b25lcw0KDQpUaW1lIHpvbmUgaXMgYW4gYXR0cmlidXRlIG9mIGEgZGF0ZS90aW1lIG9iamVjdCB0aGF0IGNvbnRyb2xzIGhvdyB0aGUgdGltZSBpcyBkaXNwbGF5ZWQuDQoNCmBgYHtyfQ0KdDEgPC0geW1kX2htcygiMjAyMC0wMS0wMSA2OjMwOjAwIiwgdHogPSAiQXNpYS9ZYW5nb24iKQ0KdDIgPC0geW1kX2htcygiMjAyMC0wMS0wMSA4OjAwOjAwIiwgdHogPSAiU2luZ2Fwb3JlIikNCnQzIDwtIHltZF9obXMoIjIwMjAtMDEtMDEgMDowMDowMCIsIHR6ID0gIkdNVCIpDQpgYGANCg0KVGhlc2UgMyB0aW1lcyBhcmUgdGhlIHNhbWUuDQoNCmBgYHtyfQ0KdDEgLSB0Mg0KdDEgLSB0Mw0KYGBgDQoNClIgdXNlcyB0aGUgW2ludGVybmF0aW9uYWwgc3RhbmRhcmQgSUFOQSB0aW1lIHpvbmVzXShodHRwczovL3d3dy5pYW5hLm9yZy90aW1lLXpvbmVzKS4gVGhlc2UgdXNlIGEgY29uc2lzdGVudCBuYW1pbmcgc2NoZW1lICIvIiwgdHlwaWNhbGx5IGluIHRoZSBmb3JtICI8Y29udGluZW50Pi88Y2l0eT4iIEV4YW1wbGVzIGluY2x1ZGUg4oCcQW1lcmljYS9OZXdfWW9ya+KAnSwg4oCcRXVyb3BlL1Bhcmlz4oCdLCBhbmQg4oCcUGFjaWZpYy9BdWNrbGFuZOKAnS4gVGhlcmUgYXJlIGEgZmV3IGV4Y2VwdGlvbnMgYmVjYXVzZSBub3QgZXZlcnkgY291bnRyeSBsaWVzIG9uIGEgY29udGluZW50LiBGb3IgZXhhbXBsZSwgIlNpbmdhcG9yZSIuDQoNCllvdSBjYW4gZmluZCBvdXQgd2hhdCBSIHRoaW5rcyB5b3VyIGN1cnJlbnQgdGltZSB6b25lIGlzLg0KDQpgYGB7cn0NClN5cy50aW1lem9uZSgpDQpgYGANCg0KWW91IGNhbiBjaGVjayBvdXQgdGhlIGNvbXBsZXRlIGxpc3Qgb2YgYWxsIHRpbWUgem9uZXMgdXNpbmcgYE9sc29uTmFtZXMoKWANCg0KYGBge3J9DQpsZW5ndGgoT2xzb25OYW1lcygpKQ0KaGVhZChPbHNvbk5hbWVzKCkpDQpgYGANCg0KRGVmYXVsdCB0aW1lIHpvbmU6IFVUQyAoQ29vcmRpbmF0ZWQgVW5pdmVyc2FsIFRpbWUpLCBkb2VzIG5vdCBoYXZlIERTVA0KDQoNCkNoYW5nZSB0aW1lIHpvbmUgaW4gdHdvIHdheXM6DQoNCjEuIEtlZXAgdGhlIGluc3RhbnQgaW4gdGltZSB0aGUgc2FtZSwgYW5kIGNoYW5nZSBob3cgaXQncyBkaXNwbGF5ZWQuDQoNCmBgYHtyfQ0Kd2l0aF90eigpDQpgYGANCg0KDQoyLiBDaGFuZ2UgdGhlIHVuZGVybHlpbmcgaW5zdGFudCBpbiB0aW1lLiBVc2UgdGhpcyB3aGVuIHRoZSBpbnN0YW50IGlzIGxhYmVsbGVkIHdpdGggYW4gaW5jb3JyZWN0IHRpbWV6b25lLg0KDQpgYGB7cn0NCmZvcmNlX3R6KCkNCmBgYA0KDQoNCg0KDQoNCg0KYGBge3J9DQpmYiA8LSByZWFkX2NzdihoZXJlKCJkYXRhIiwgImZiX25ldy5jc3YiKSkNCnR3IDwtIHJlYWRfY3N2KGhlcmUoImRhdGEiLCAidHdfbmV3LmNzdiIpKQ0KYGBgDQoNCldobyBhcmUgdGhlIHRvcCAxMCBpbmZsdWVuY2VycyB3aG8gcG9zdGVkIHRoZSBoaWdoZXN0IG51bWJlciBvZiB0d2VldHM/DQoNCmBgYHtyfQ0KdG9wXzEwIDwtIHR3ZWV0ICU+JSANCiAgY291bnQoaW5mbHVlbmNlciwgc29ydCA9IFRSVUUpICU+JSANCiAgc2xpY2UoMToxMCkgJT4lIA0KICBwdWxsKGluZmx1ZW5jZXIpDQpgYGANCg0KUGxvdCB0aGVpciB0b3RhbCBudW1iZXIgb2YgdHdlZXRzIGFnYWluc3QgYXZlcmFnZSBBVkUgdmFsdWUgdXNpbmcgYSBzY2F0dGVyIHBsb3QuDQoNCmBgYHtyfQ0KdHdlZXQgJT4lIA0KICBmaWx0ZXIoaW5mbHVlbmNlciAlaW4lIHRvcF8xMCkgJT4lIA0KICBncm91cF9ieShpbmZsdWVuY2VyKSAlPiUgDQogIHN1bW1hcmlzZShhdmUgPSBtZWFuKGF2ZSwgbmEucm0gPSBUUlVFKSwNCiAgICAgICAgICAgIG51bV90d2VldHMgPSBuKCkpICU+JSANCiAgZ2dwbG90KGFlcyh4ID0gbnVtX3R3ZWV0cywgeSA9IGF2ZSkpICsNCiAgZ2VvbV9wb2ludCgpICsNCiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IGluZmx1ZW5jZXIpLCBoanVzdCA9IDEsIHZqdXN0ID0gLTAuNSwgc2l6ZSA9IDMsIGNoZWNrX292ZXJsYXAgPSBUUlVFKSArDQogIGxhYnModGl0bGUgPSAiQVZFIGFuZCBudW1iZXIgb2YgdHdlZXRzIG9mIGluZmx1ZW5jZXJzIiwgeCA9ICJOdW1iZXIgb2YgdHdlZXRzIiwgeSA9ICJNZWFuIHZhbHVlIG9mIEFWRSIpICsNCiAgc2NhbGVfeF9jb250aW51b3VzKGxpbWl0cyA9IGMoMCwgMTUwMCksIGJyZWFrcyA9IHNlcSgwLCAxNTAwLCAzMDApKSArDQogIHRoZW1lX2NsYXNzaWMoKQ0KYGBgDQoNCk5hdHVyZSBvZiBzZW50aW1lbnRzIG9mIHRoZSB0b3AgMTAgaW5mbHVlbmNlcidzIHR3ZWV0cyBjbGFzc2lmaWVkIGJ5IGFsZ29yaXRobS4NCg0KYGBge3J9DQp0d2VldCAlPiUgDQogIGZpbHRlcihpbmZsdWVuY2VyICVpbiUgdG9wXzEwKSAlPiUgDQogIG11dGF0ZShpbmZsdWVuY2VyID0gZmFjdG9yKGluZmx1ZW5jZXIpLA0KICAgICAgICAgc2VudGltZW50ID0gZmFjdG9yKHNlbnRpbWVudCwgbGV2ZWxzID0gYygiUG9zaXRpdmUiLCAiTmVnYXRpdmUiLCAiTmV1dHJhbCIsICJOb3QgUmF0ZWQiKSkpICU+JSANCiAgZ2dwbG90KGFlcyh4ID0gZmN0X2luZnJlcShpbmZsdWVuY2VyKSwgZmlsbCA9IGZjdF9yZXYoc2VudGltZW50KSkpICsNCiAgZ2VvbV9iYXIocG9zaXRpb24gPSAiZmlsbCIpICsNCiAgc2NhbGVfZmlsbF92aXJpZGlzKGRpc2NyZXRlID0gVFJVRSwgb3B0aW9uID0gIkQiLCBhbHBoYSA9IDAuOCkgKw0KICBzY2FsZV95X2NvbnRpbnVvdXMobGFiZWxzID0gc2NhbGVzOjpwZXJjZW50X2Zvcm1hdCgpKSArDQogIGxhYnMoeCA9ICJJbmZsdWVuY2VyIiwgeSA9ICIiLCBmaWxsID0gIlNlbnRpbWVudCBvZiB0d2VldHMiKSArDQogIHRoZW1lX2NsYXNzaWMoKSArDQogIHRoZW1lKGF4aXMudGV4dC54ID0gZWxlbWVudF90ZXh0KGFuZ2xlID0gOTAsIGhqdXN0ID0gMSwgdmp1c3QgPSAwLjMpLA0KICAgICAgICBheGlzLnRpY2tzID0gZWxlbWVudF9ibGFuaygpKQ0KYGBgDQoNCg0KYGBge3J9DQp0d2VldCAlPiUgDQogIGdyb3VwX2J5KGxhbmd1YWdlKSAlPiUgDQogIHN1bW1hcmlzZShuID0gbigpKSAlPiUgDQogIGFycmFuZ2UoZGVzYyhuKSkgJT4lIA0KICBzbGljZSgxOjEwKSAlPiUgDQogIG11dGF0ZShwb3MgPSBmYWN0b3IobGFuZ3VhZ2UpKSAlPiUgDQogIGdncGxvdChhZXMoeCA9IGZjdF9yZW9yZGVyKHBvcywgbiksIHkgPSBuKSkgKw0KICBnZW9tX2JhcihzdGF0ID0gImlkZW50aXR5IikgKw0KICBjb29yZF9mbGlwKCkgKw0KICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzICA9IGMoMCwgODAwMDApKSArDQogIGxhYnMoeCA9ICJMYW5ndWFnZSIsIHkgPSAiTnVtYmVyIG9mIHR3ZWV0cyIpDQpgYGANCiAgDQpgYGB7cn0NCmZiICU+JSANCiAgZ3JvdXBfYnkobGFuZ3VhZ2UpICU+JSANCiAgc3VtbWFyaXNlKG4gPSBuKCkpICU+JSANCiAgYXJyYW5nZShkZXNjKG4pKSAlPiUgDQogIHNsaWNlKDE6MTApICU+JSANCiAgbXV0YXRlKHBvcyA9IGZhY3RvcihsYW5ndWFnZSkpICU+JSANCiAgZ2dwbG90KGFlcyh4ID0gZmN0X3Jlb3JkZXIocG9zLCBuKSwgeSA9IG4pKSArDQogIGdlb21fYmFyKHN0YXQgPSAiaWRlbnRpdHkiKSArDQogIGNvb3JkX2ZsaXAoKSArDQogIHNjYWxlX3lfY29udGludW91cyhsaW1pdHMgID0gYygwLCA4MDAwMCkpICsNCiAgbGFicyh4ID0gIkxhbmd1YWdlIG9mIHBvc3RzIiwgeSA9ICJOdW1iZXIgb2YgZmFjZWJvb2sgcG9zdHMiKQ0KYGBgDQoNCmBgYHtyfQ0KdHdlZXQxIDwtIHR3ZWV0ICU+JSANCiAgbXV0YXRlKGRhdGV0aW1lID0gbWFrZV9kYXRldGltZSh5ZWFyLCBtb250aCwgZGF5LCB0aW1lICUvJSAxMDAsIHRpbWUgJSUgMTAwKSkNCg0KZmIxIDwtIGZiICU+JSANCiAgbXV0YXRlKGRhdGV0aW1lID0gcGFyc2VfZGF0ZV90aW1lKGRhdGUsICJ5bWRITVMiKSkNCmBgYA0KDQpgYGB7cn0NCnNvY2lhbF9tZWRpYSA8LSBiaW5kX3Jvd3MoDQogIFR3aXR0ZXIgPSB0d2VldDEgJT4lIHNlbGVjdChkYXRldGltZSksDQogIEZhY2Vib29rID0gZmIxICU+JSBzZWxlY3QoZGF0ZXRpbWUpLA0KICAuaWQgPSAic291cmNlIg0KKQ0KDQpzb2NpYWxfbWVkaWEgJT4lIA0KICBnZ3Bsb3QoYWVzKHggPSBkYXRldGltZSwgY29sID0gc291cmNlKSkgKw0KICBnZW9tX2ZyZXFwb2x5KGJpbndpZHRoID0gNjAqNjAqMjQpDQoNCnR3MWRhdGUgPC0gcmFuZ2UodHcxJGRhdGV0aW1lKQ0KKHR3MWRhdGVbMV0gJS0tJSB0dzFkYXRlWzJdKSAlLyUgZGF5cygxKQ0KDQp0ZXN0IDwtIHNvY2lhbF9tZWRpYSAlPiUgDQogIG11dGF0ZShkdCA9IGRhdGUoZGF0ZXRpbWUpKSAlPiUgDQogIGNvdW50KHNvdXJjZSwgZHQpICU+JSANCiAgcGl2b3Rfd2lkZXIobmFtZXNfZnJvbSA9IHNvdXJjZSwNCiAgICAgICAgICAgICAgdmFsdWVzX2Zyb20gPSBuKQ0KDQpnZ3Bsb3QodGVzdCwgYWVzKHggPSBmYiwgeSA9IHR3KSkgKw0KICBnZW9tX3BvaW50KCkNCmBgYA0KDQoNCg==</div>
 
 
 
