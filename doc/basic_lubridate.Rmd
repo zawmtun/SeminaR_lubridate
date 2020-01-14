@@ -116,7 +116,6 @@ semester(a_dt)
 semester(a_dt, with_year = TRUE)
 ```
 
-
 Exercise 2: Extract each component of the datetime variable `dt` from `dat1` dataframe, including day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.
 
 ```{r}
@@ -145,8 +144,8 @@ dat1 %>%
 Three important classes that represent time spans:
 
 - Duration: an exact number of seconds
+- Period: allows calculation by calendar week, month, and year - this way of calculation is probably more familiar to us.
 - Intervals: measured in seconds but with a starting date
-- Periods: human units like weeks and months. Unlike seconds, years and months can vary because of different days in a month, leap year, and daylight savings time. Period allows adding 1 month to 1st February and become 1st March; it allows the calculation in calendar or clock time rather than in seconds.
 
 Let's take a look at functions that work with these time span classes.
 
@@ -160,6 +159,7 @@ js_age
 class(js_age)
 ```
 
+Duration is the difference between two dates or date/time objects. In base R, substraction of the two dates or date/time objects creates a `difftime` object. Its unit can be seconds, minutes, hours, days, and weeks (read the help file `?difftime`). It can be confusing to work with.
 
 ```{r}
 as.difftime(seq(from = 10, to = 50, by = 10), units = "secs")
@@ -167,13 +167,13 @@ as.difftime(seq(from = 10, to = 50, by = 10), units = "hours")
 as.difftime(seq(from = 10, to = 50, by = 10), units = "weeks")
 ```
 
-`{lubridate}` always represents a duration in seconds.
+In `{lubridate}`, a duration is always represented in seconds.
 
 ```{r}
 as.duration(js_age)
 ```
 
-There are convenient functions to construct durations but it's always represented in seconds.
+We can construct duration based on numbers in second, minute, hour, day, week and year using convenient functions from `lubridate`. The output of these functions is the equivalent number of seconds.
 
 ```{r}
 dseconds(15)
@@ -183,6 +183,8 @@ ddays(0:5)
 dweeks(3)
 dyears(1)
 ```
+
+Note that there is no `dmonths()`. Why is that?
 
 You can add and multiply durations:
 
@@ -198,46 +200,20 @@ tomorrow <- today() + ddays(1)
 last_year <- today() - dyears(1)
 ```
 
-However, because durations represent an exact number of seconds, sometimes you might get an unexpected result:
+## Periods
+
+Calculation using durations may get you an unexpected result. The number of seconds in a year or a month can vary because of different days in a month, leap year, and daylight savings time.
 
 ```{r}
-one_pm <- ymd_hms("2016-03-12 13:00:00", tz = "America/New_York")
+# A leap year
+ymd("2016-01-01") + dyears(1)
 
-one_pm
+# Daylight Savings Time
+one_pm <- ymd_hms("2016-03-12 13:00:00", tz = "America/New_York")
 one_pm + ddays(1)
 ```
 
-## Intervals
-
-
-
-```{r}
-dyears(1)/ddays(1)
-years(1)/days(1)
-```
-
-
-
-## Periods
-
-```{r}
-one_pm
-one_pm + days(1)
-```
-
-Constructor functions for periods:
-
-```{r}
-seconds(15)
-minutes(10)
-hours(c(12, 24))
-days(7)
-months(1:6)
-weeks(3)
-years(1)
-```
-
-You can add periods to dates. Compared to durations, periods are more likely to do what you expect:
+This is where period comes in. It allows adding one year to January 1, 2020 and become January 1, 2021, instead of 31 December 2020 because of the leap year. Compared to durations, periods are more likely to do what you expect:
 
 ```{r}
 # A leap year
@@ -250,22 +226,34 @@ one_pm + ddays(1)
 one_pm + days(1)
 ```
 
-You can also add and multiple periods.
+We can construct periods from numbers:
+
+```{r}
+seconds(15)
+minutes(10)
+hours(c(12, 24))
+days(7)
+months(1:6)
+weeks(3)
+years(1)
+```
+
+You can also add and multiply periods.
 
 ```{r}
 10 * (months(6) + days(1))
 days(50) + hours(25) + minutes(2)
 ```
 
-Here is an example of differences in the results of adding durations and periods to a date/time because of leap year.
+Exercise 3: A new column year is created in `dat1` using random numbers. Convert this column into both duration and period and add them to `dt` column. Check whether and to what extent the results are different and why?
 
 ```{r}
 dat3 <- dat1
-dat3$r <- sample(-20:20, nrow(dat3), replace = TRUE)
+dat3$year <- sample(-20:20, nrow(dat3), replace = TRUE)
 
 dat3 <- dat3 %>% 
-  mutate(d = dyears(r),
-         p = years(r),
+  mutate(d = dyears(year),
+         p = years(year),
          dt_duration = dt + d,
          dt_period = dt + p,
          diff = as.duration(dt_duration - dt_period))
@@ -273,7 +261,54 @@ dat3 <- dat3 %>%
 dat3
 ```
 
+## Intervals
 
+`dyears(1) / ddays(1)` returns 365 because durations are always represented by a number of seconds, and a duration of a year is defined as 365 days worth of seconds.
+
+Let's do the same calculation using periods.
+
+```{r}
+years(1) / days(1)
+```
+
+A period represents calendar time and it returns 365.25 with a message stating that it's an imprecise estimate. Why is that? That is because it would return 366 if it was a leap year. Since we do not know when that period started, we cannot know the period accurately; we should use an interval instead (if we have the start dates).
+
+`interval()` function creates interval objects. `%--%` is the shorthand for the function. An interval object prints the start and end dates rather than seconds.
+
+```{r}
+my_int1 <- ymd_hms("2016-03-12 13:00:00") %--% ymd_hms("2017-04-12 13:00:00")
+my_int2 <- ymd_hms("2016-08-01 13:00:00") %--% ymd_hms("2017-08-12 13:00:00")
+my_int1
+my_int2
+```
+
+You can extract start and end dates.
+
+```{r}
+int_start(my_int1)
+int_end(my_int1)
+```
+
+You can change the start or end dates in place.
+
+```{r}
+int_start(my_int1) <- ymd_hms("2016-01-01 13:00:00")
+int_end(my_int1) <- ymd_hms("2017-01-01 13:00:00")
+my_int1
+```
+
+You can test whether a date falls within an interval.
+
+```{r}
+ymd_hms("2016-05-01 13:00:00") %within% my_int1
+ymd_hms("1999-05-01 13:00:00") %within% my_int1
+```
+
+You can also test whether two intervals overlaps.
+
+```{r}
+int_overlaps(my_int1, my_int2)
+```
 
 # Time zones
 
