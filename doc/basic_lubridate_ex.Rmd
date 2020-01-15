@@ -1,17 +1,46 @@
 ---
-title: "Dates and times"
+title: "SeminaR: Dates and times"
+author: "ZMT"
+date: "Jan 15, 2020"
 output:
+  pdf_document:
+    toc: yes
   html_document:
-    toc: true
-    toc_float: true
+    toc: yes
 ---
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+In this workshop, we will discuss how to work with dates and times in R.
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(lubridate)
 ```
-
-We will discuss how to work with dates and times in R. Most contents in this session are based on [R for Data Science](https://r4ds.had.co.nz/dates-and-times.html#time-zones) book.
 
 # System date and time
 
@@ -91,7 +120,6 @@ dat <- tibble(
 
 ```{r}
 # Ex:
-
 ```
 
 # Extracting components
@@ -129,21 +157,26 @@ semester(a_dt, with_year = TRUE)
 
 Break down the variable `dt` from `dat1` and create a variable for each component. In addition, find out the day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.
 
+```{r echo=FALSE, results="hide"}
+dat1 <- dat %>% 
+  mutate(dt = make_datetime(year, month, day, hour, minute, second))
+```
+
+```{r}
+dat2 <- dat1 %>% 
+  select(dt)
+```
+
+
 ```{r}
 # Ex:
 ```
 
 What is the frequency distribution of the quarters of these dates?
 
-```{r echo=FALSE, results="hide"}
-dat1 <- dat %>% 
-  mutate(dt = make_datetime(year, month, day, hour, minute, second))
-```
-
-
 ```{r}
 dat1 %>% 
-  mutate(q = quarter(dt)) %>% 
+  mutate(q = quarter(dt, with_year = TRUE)) %>% 
   count(q)
 ```
 
@@ -262,7 +295,6 @@ dat3 <- dat1
 dat3$year <- sample(-20:20, nrow(dat3), replace = TRUE)
 
 # Ex:
-
 ```
 
 ## Intervals

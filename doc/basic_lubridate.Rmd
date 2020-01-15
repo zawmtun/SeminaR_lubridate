@@ -1,6 +1,8 @@
 ---
 title: "Dates and times"
-output: html_notebook
+output:
+  html_document:
+    toc: true
 ---
 
 ```{r}
@@ -71,7 +73,7 @@ make_datetime(
 )
 ```
 
-### Exercise 1
+## Exercise 1
 
 A dataframe `dat` is provided, including components of date/time. Use these components to create a new date/time variable and assign the dataframe a new name `dat1`.
 
@@ -122,7 +124,7 @@ semester(a_dt)
 semester(a_dt, with_year = TRUE)
 ```
 
-### Exercise 2
+## Exercise 2
 
 Break down the variable `dt` from `dat1` and create a variable for each component. In addition, find out the day of the month, day of the year, and day of the week. Display month and day of the week in words instead of numbers.
 
@@ -259,7 +261,7 @@ You can also add and multiply periods.
 days(50) + hours(25) + minutes(2)
 ```
 
-### Exercise 3
+## Exercise 3
 
 A new column year is created in `dat1` using random numbers. Convert this column into both duration and period and add them to `dt` column. Check whether and to what extent the results are different and why?
 
