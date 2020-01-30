@@ -220,9 +220,10 @@ class(js_age)
 Duration is the difference between two dates or date/time objects. In base R, substraction of the two dates or date/time objects creates a `difftime` object. Its unit can be seconds, minutes, hours, days, and weeks (read the help file `?difftime`). It can be confusing to work with.
 
 ```{r}
-as.difftime(seq(from = 10, to = 50, by = 10), units = "secs")
-as.difftime(seq(from = 10, to = 50, by = 10), units = "hours")
-as.difftime(seq(from = 10, to = 50, by = 10), units = "weeks")
+x <- seq(from = 10, to = 50, by = 10)
+as.difftime(x, units = "secs")
+as.difftime(x, units = "hours")
+as.difftime(x, units = "weeks")
 ```
 
 In `{lubridate}`, a duration is always represented in seconds.
@@ -254,8 +255,13 @@ dyears(1) + dweeks(4) + ddays(7)
 You can add and subtract durations to and from days:
 
 ```{r}
+today()
+
 tomorrow <- today() + ddays(1)
+tomorrow
+
 last_year <- today() - dyears(1)
+last_year
 ```
 
 ## Periods
@@ -331,8 +337,9 @@ A period represents calendar time and it returns 365.25 with a message stating t
 
 ```{r}
 my_int1 <- ymd_hms("2016-03-12 13:00:00") %--% ymd_hms("2017-04-12 13:00:00")
-my_int2 <- ymd_hms("2016-08-01 13:00:00") %--% ymd_hms("2017-08-12 13:00:00")
 my_int1
+
+my_int2 <- ymd_hms("2016-08-01 13:00:00") %--% ymd_hms("2017-08-12 13:00:00")
 my_int2
 ```
 
