@@ -103,11 +103,28 @@ make_datetime(
 )
 ```
 
+## From an existing date/time object
+
+We can create a date/time object from an existing date object and vice versa.
+
+```{r}
+x <- ymd_hms("2010-01-28 23:59:59")
+
+# Coarce to a date
+d <- as_date(x)
+d
+
+# Coarce to a date/time object
+t <- as_datetime(d)
+t
+```
+
 ## Exercise 1
 
 A dataframe `dat` is provided, including components of date/time. Use these components to create a new date/time variable and assign the dataframe a new name `dat1`.
 
 ```{r}
+set.seed(1)
 dat <- tibble(
   year = 2020,
   month = round(runif(30, min = 1, max = 12)),
@@ -192,7 +209,7 @@ Let's take a look at functions that work with these time span classes.
 
 ## Duration
 
-If John Snow was alive today, how old would he be?
+If John Snow (born on March 15, 1813) was alive today, how old would he be?
 
 ```{r}
 js_age <- today() - ymd(18130315)
@@ -292,6 +309,7 @@ A new column year is created in `dat1` using random numbers. Convert this column
 
 ```{r}
 dat3 <- dat1
+set.seed(2)
 dat3$year <- sample(-20:20, nrow(dat3), replace = TRUE)
 
 # Ex:
